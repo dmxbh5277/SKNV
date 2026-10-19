@@ -221,10 +221,10 @@
 
     /* BADGE XẾP HẠNG GIỮA CARD */
     .card-rank-badge {
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 10px;
+      padding: 2px 8px;
+      border-radius: 12px;
       background: #ffffff;
       color: #475569;
       border: 1px solid #cbd5e1;
@@ -251,7 +251,7 @@
     .ratio-badge { display: inline-block; padding: 5px 10px; border-radius: 20px; font-weight: 600; font-size: 0.8rem; background-color: #e0f2fe; color: #0284c7; }
     .loading-spinner { display: flex; justify-content: center; align-items: center; min-height: 300px; flex-direction: column; }
 
-    /* TỐI ƯU HÓA GIAO DIỆN MOBILE ĐỂ KHÔNG BỊ QUÁ TO */
+    /* TỐI ƯU GIAO DIỆN MOBILE */
     @media (max-width: 768px) {
       .sidebar { width: 64px; }
       .sidebar-brand { padding: 16px 8px; font-size: 0.85rem; justify-content: center; }
@@ -293,7 +293,7 @@
 
     <main class="main-content">
       <div class="top-bar">
-        <h5 class="fw-bold m-0 text-dark d-flex align-items-center" id="page-title" style="font-size: 1.1rem;">
+        <h5 class="fw-bold m-0 text-dark d-flex align-items-center" id="page-title">
           <i class="fa-solid fa-sack-dollar text-indigo-600 me-2"></i>Thống Kê Doanh Thu
         </h5>
         <div class="input-group input-group-sm shadow-sm" style="max-width: 420px; width: 100%;">
@@ -321,7 +321,7 @@
         <div id="staff-search-results-container" class="mb-3 d-none">
           <div class="card border-0 shadow-sm p-3" style="border-radius: var(--card-radius); background: #f8fafc; border: 1px solid var(--border-color);">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h6 class="fw-bold text-primary m-0" style="font-size: 0.9rem;"><i class="fa-solid fa-user-check me-2"></i>Kết quả chỉ số nhân viên (<span id="search-match-count">0</span>)</h6>
+              <h6 class="fw-bold text-primary m-0"><i class="fa-solid fa-user-check me-2"></i>Kết quả chỉ số nhân viên (<span id="search-match-count">0</span>)</h6>
               <button class="btn btn-sm btn-link text-muted p-0 text-decoration-none" onclick="clearSearch()"><i class="fa-solid fa-xmark me-1"></i>Đóng</button>
             </div>
             <div id="staff-search-cards-list" class="row g-2"></div>
@@ -344,13 +344,13 @@
             </div>
             <div class="table-container">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <h6 class="fw-bold m-0" style="font-size: 0.95rem;"><i class="fa-solid fa-users text-indigo me-2"></i>Bảng Tổng Hợp Doanh Thu Nhân Viên</h6>
+                <h6 class="fw-bold m-0"><i class="fa-solid fa-users text-indigo me-2"></i>Bảng Tổng Hợp Doanh Thu Nhân Viên</h6>
                 <span class="badge bg-light text-dark border px-2 py-1" id="total-staff-badge">0 NV</span>
               </div>
               <table class="table custom-table">
                 <thead>
                   <tr>
-                    <th style="width: 50px; text-align: center;">STT</th>
+                    <th style="width: 60px; text-align: center;">STT</th>
                     <th onclick="sortRevenueTable('common', 'name')" style="text-align: left;">Tên NV <i class="fa-solid fa-sort sort-icon" id="sort-icon-common-name"></i></th>
                     <th onclick="sortRevenueTable('common', 'dtST')" style="text-align: left;">DT ST <i class="fa-solid fa-sort sort-icon" id="sort-icon-common-dtST"></i></th>
                     <th onclick="sortRevenueTable('common', 'dtQD')" style="text-align: left;">DT QĐ <i class="fa-solid fa-sort sort-icon" id="sort-icon-common-dtQD"></i></th>
@@ -373,11 +373,11 @@
               <div class="col-md-3 col-6"><div class="kpi-card"><div class="kpi-title">Tỷ Trọng Trả Chậm TB</div><div class="kpi-value text-info" id="st1-tracham">0%</div></div></div>
             </div>
             <div class="table-container">
-              <h6 class="fw-bold mb-3 text-indigo" style="color:var(--primary-color); font-size: 0.95rem;"><i class="fa-solid fa-building me-2"></i>Bảng Hiệu Suất - Siêu Thị 1</h6>
+              <h6 class="fw-bold mb-3 text-indigo" style="color:var(--primary-color);"><i class="fa-solid fa-building me-2"></i>Bảng Hiệu Suất - Siêu Thị 1</h6>
               <table class="table custom-table">
                 <thead>
                   <tr>
-                    <th style="width: 50px; text-align: center;">STT</th>
+                    <th style="width: 60px; text-align: center;">STT</th>
                     <th onclick="sortRevenueTable('st1', 'name')" style="text-align: left;">Tên NV <i class="fa-solid fa-sort sort-icon" id="sort-icon-st1-name"></i></th>
                     <th onclick="sortRevenueTable('st1', 'dtST')" style="text-align: left;">DT ST <i class="fa-solid fa-sort sort-icon" id="sort-icon-st1-dtST"></i></th>
                     <th onclick="sortRevenueTable('st1', 'dtQD')" style="text-align: left;">DT QĐ <i class="fa-solid fa-sort sort-icon" id="sort-icon-st1-dtQD"></i></th>
@@ -400,11 +400,11 @@
               <div class="col-md-3 col-6"><div class="kpi-card"><div class="kpi-title">Tỷ Trọng Trả Chậm TB</div><div class="kpi-value text-info" id="st2-tracham">0%</div></div></div>
             </div>
             <div class="table-container">
-              <h6 class="fw-bold mb-3 text-indigo" style="color:var(--primary-color); font-size: 0.95rem;"><i class="fa-solid fa-building me-2"></i>Bảng Hiệu Suất - Siêu Thị 2</h6>
+              <h6 class="fw-bold mb-3 text-indigo" style="color:var(--primary-color);"><i class="fa-solid fa-building me-2"></i>Bảng Hiệu Suất - Siêu Thị 2</h6>
               <table class="table custom-table">
                 <thead>
                   <tr>
-                    <th style="width: 50px; text-align: center;">STT</th>
+                    <th style="width: 60px; text-align: center;">STT</th>
                     <th onclick="sortRevenueTable('st2', 'name')" style="text-align: left;">Tên NV <i class="fa-solid fa-sort sort-icon" id="sort-icon-st2-name"></i></th>
                     <th onclick="sortRevenueTable('st2', 'dtST')" style="text-align: left;">DT ST <i class="fa-solid fa-sort sort-icon" id="sort-icon-st2-dtST"></i></th>
                     <th onclick="sortRevenueTable('st2', 'dtQD')" style="text-align: left;">DT QĐ <i class="fa-solid fa-sort sort-icon" id="sort-icon-st2-dtQD"></i></th>
@@ -434,11 +434,11 @@
           </div>
         </div>
 
-        <!-- VÙNG KẾT QUẢ TÌM KIẾM ĐÚNG 1 NHÂN VIÊN & XẾP HẠNG -->
+        <!-- VÙNG KẾT QUẢ TÌM KIẾM CÓ XẾP HẠNG Ở GIỮA CARD -->
         <div id="comp-staff-search-results-container" class="mb-3 d-none">
           <div class="card border-0 shadow-sm p-3" style="border-radius: var(--card-radius); background: #ffffff; border: 1px solid var(--border-color);">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h6 class="fw-bold text-dark m-0" style="font-size: 0.9rem;"><i class="fa-solid fa-trophy text-warning me-2"></i>Kết quả tìm kiếm nhân viên</h6>
+              <h6 class="fw-bold text-dark m-0"><i class="fa-solid fa-trophy text-warning me-2"></i>Kết quả tìm kiếm nhân viên</h6>
               <button class="btn btn-sm btn-link text-muted p-0 text-decoration-none" onclick="clearCompSearch()"><i class="fa-solid fa-xmark me-1"></i>Đóng</button>
             </div>
             <div id="comp-staff-search-card-single"></div>
@@ -448,13 +448,13 @@
         <div class="tab-content">
           <div class="tab-pane fade show active" id="comp-tab-st1" role="tabpanel">
             <div class="table-container">
-              <h6 class="fw-bold mb-3 text-warning" style="font-size: 0.95rem;"><i class="fa-solid fa-trophy me-2"></i>Bảng Thi Đua Ngành Hàng - Siêu Thị 1</h6>
+              <h6 class="fw-bold mb-3 text-warning"><i class="fa-solid fa-trophy me-2"></i>Bảng Thi Đua Ngành Hàng - Siêu Thị 1</h6>
               <table class="table custom-table comp-table"><thead id="comp-thead-st1"></thead><tbody id="comp-tbody-st1"></tbody></table>
             </div>
           </div>
           <div class="tab-pane fade" id="comp-tab-st2" role="tabpanel">
             <div class="table-container">
-              <h6 class="fw-bold mb-3 text-warning" style="font-size: 0.95rem;"><i class="fa-solid fa-trophy me-2"></i>Bảng Thi Đua Ngành Hàng - Siêu Thị 2</h6>
+              <h6 class="fw-bold mb-3 text-warning"><i class="fa-solid fa-trophy me-2"></i>Bảng Thi Đua Ngành Hàng - Siêu Thị 2</h6>
               <table class="table custom-table comp-table"><thead id="comp-thead-st2"></thead><tbody id="comp-tbody-st2"></tbody></table>
             </div>
           </div>
@@ -468,7 +468,7 @@
       <div id="page-tra-cham" class="page-section d-none">
         <div class="table-container">
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <h6 class="fw-bold m-0 text-dark" style="font-size: 0.95rem;"><i class="fa-solid fa-credit-card text-indigo me-2" style="color:var(--primary-color);"></i>Phân Tích Dữ Liệu Trả Chậm (Cột H đến AA)</h6>
+            <h6 class="fw-bold m-0 text-dark"><i class="fa-solid fa-credit-card text-indigo me-2" style="color:var(--primary-color);"></i>Phân Tích Dữ Liệu Trả Chậm (Cột H đến AA)</h6>
             <span class="badge bg-light text-secondary border px-2 py-1">Financial Partners Overview</span>
           </div>
           <table class="table custom-table" id="tracham-table">
@@ -563,7 +563,7 @@
       document.getElementById("mainTabContent").classList.add("d-none");
 
       clearTimeout(fetchTimer);
-      // Tăng thời gian chờ lên 12 giây để tương thích tốt với mạng di động (3G/4G/5G)
+      // TĂNG THỜI GIAN CHỜ LÊN 12 GIÂY ĐỂ ĐẢM BẢO MẠNG 4G/5G TRÊN MOBILE KỊP TẢI DỮ LIỆU
       fetchTimer = setTimeout(function() {
         if (!globalData) handleError("Thời gian phản hồi quá lâu. Vui lòng kiểm tra quyền Deploy!");
       }, 12000);
@@ -796,7 +796,7 @@
                 <div class="text-secondary fw-bold" style="font-size: 0.73rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${cat}">${cat}</div>
                 <div class="d-flex justify-content-between align-items-center mt-1">
                   <span style="font-size: 1.05rem; font-weight: 800; color: ${valColor};">${iconBadge}${val === 0 ? '-' : formatNumber(val)}</span>
-                  <span class="card-rank-badge ${topRankClass}"><i class="fa-solid fa-ranking-star me-1" style="font-size:0.6rem;"></i>Hạng #${rankInShop}</span>
+                  <span class="card-rank-badge ${topRankClass}"><i class="fa-solid fa-ranking-star me-1" style="font-size:0.65rem;"></i>Hạng #${rankInShop}</span>
                   <span class="text-muted fw-semibold" style="font-size: 0.72rem;">TB: ${formatNumber(avg)}</span>
                 </div>
               </div>
@@ -903,9 +903,9 @@
       }
 
       var headerHtml = `
-        <th style="width: 50px; text-align: center;">STT</th>
-        <th style="width: 90px;" onclick="sortCompTable('${storeKey}', 'aboveAvgCount')">Đạt TB ${getSortIcon('aboveAvgCount')}</th>
-        <th style="width: 150px; text-align: left;" onclick="sortCompTable('${storeKey}', 'name')">Tên Nhân Viên ${getSortIcon('name')}</th>
+        <th style="width: 60px; text-align: center;">STT</th>
+        <th style="width: 100px;" onclick="sortCompTable('${storeKey}', 'aboveAvgCount')">Đạt TB ${getSortIcon('aboveAvgCount')}</th>
+        <th style="width: 160px; text-align: left;" onclick="sortCompTable('${storeKey}', 'name')">Tên Nhân Viên ${getSortIcon('name')}</th>
       `;
       categories.forEach(function(cat) { 
         headerHtml += `<th class="col-cat" onclick="sortCompTable('${storeKey}', '${cat}')">${cat} ${getSortIcon(cat)}</th>`; 
@@ -921,186 +921,4 @@
           let valA = a.aboveAvgCount;
           let valB = b.aboveAvgCount;
           if (valA !== valB) {
-            return isAsc ? valA - valB : valB - valA;
-          }
-          return isAsc ? a.totalVal - valB : b.totalVal - a.totalVal;
-        } else if (col === 'name') {
-          let valA = a.name || '';
-          let valB = b.name || '';
-          return isAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
-        } else {
-          let valA = a.cats[col] || 0;
-          let valB = b.cats[col] || 0;
-          if (valA !== valB) {
-            return isAsc ? valA - valB : valB - valA;
-          }
-          return b.aboveAvgCount - a.aboveAvgCount;
-        }
-      });
-
-      tbody.innerHTML = "";
-      sortedStaffList.forEach(function(staff, index) {
-        var rank = index + 1;
-        var rowHtml = `<td style="text-align: center;"><span class="rank-badge">${rank}</span></td><td style="text-align: center;"><span class="ratio-badge">${staff.aboveAvgCount}/${staff.totalCats}</span></td><td class="fw-semibold text-dark" style="text-align: left;">${staff.name}</td>`;
-        
-        categories.forEach(function(cat) {
-          var val = staff.cats[cat] || 0;
-          var avg = categoryAverages[cat] || 0;
-          var cellClass = (val < avg) ? "val-below-avg" : "";
-          rowHtml += `<td class="${cellClass}" style="text-align: left;">${val === 0 ? "-" : formatNumber(val)}</td>`;
-        });
-        var tr = document.createElement("tr");
-        tr.innerHTML = rowHtml;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function sortTraChamTable(colIdx) {
-      if (!globalData || !globalData.traChamTable) return;
-      if (traChamSortState.colIdx === colIdx) {
-        traChamSortState.asc = !traChamSortState.asc;
-      } else {
-        traChamSortState.colIdx = colIdx;
-        traChamSortState.asc = (colIdx === 0);
-      }
-      renderTraChamTable(globalData);
-    }
-
-    function renderTraChamTable(data) {
-      if (!data || !data.traChamTable) return;
-      var tInfo = data.traChamTable;
-      var thead = document.getElementById("tracham-thead");
-      var tbody = document.getElementById("tracham-tbody");
-      if (!thead || !tbody) return;
-
-      var row1 = tInfo.headerRow1 || [];
-      var row2 = tInfo.headerRow2 || [];
-      var totalCols = row1.length;
-      
-      var tr1Html = "<tr><th rowspan='2' style='width: 60px; min-width: 60px; text-align: center;'>STT</th>";
-      var tr2Html = "<tr>";
-
-      let i = 0;
-      let partnerCounter = 0;
-      let colPartnerMap = {};
-
-      while (i < row1.length) {
-        let val1 = row1[i] || "";
-        let val2 = row2[i] || "";
-
-        let sortIcon = (traChamSortState.colIdx === i) 
-          ? (traChamSortState.asc ? ' <i class="fa-solid fa-sort-up text-indigo"></i>' : ' <i class="fa-solid fa-sort-down text-indigo"></i>') 
-          : ' <i class="fa-solid fa-sort text-muted opacity-50" style="font-size:0.7rem;"></i>';
-
-        if (val1 === "" || val2 === "" || val1 === val2 || i < 4) {
-          let displayName = val1 || val2 || ("Cột " + (i + 8));
-          let minWidthStyle = (i === 0) ? "min-width: 180px;" : "min-width: 110px;";
-          tr1Html += `<th rowspan="2" style="${minWidthStyle} vertical-align: middle; text-align: ${i === 0 ? 'left' : 'center'};" onclick="sortTraChamTable(${i})">${displayName} ${sortIcon}</th>`;
-          i++;
-        } else {
-          let groupName = val1;
-          let spanCount = 0;
-          let tempI = i;
-          while (tempI < row1.length && (row1[tempI] === groupName || (row1[tempI] === "" && tempI === i))) {
-            spanCount++;
-            tempI++;
-          }
-          if (spanCount === 0) spanCount = 1;
-
-          let palette = partnerPalettes[partnerCounter % partnerPalettes.length];
-          partnerCounter++;
-
-          tr1Html += `<th colspan="${spanCount}" style="text-align: center; background-color: ${palette.bg}; color: ${palette.text}; font-weight: 700; border-bottom: 2px solid ${palette.border};">${groupName}</th>`;
-          
-          for (let j = 0; j < spanCount; j++) {
-            let subIdx = i + j;
-            colPartnerMap[subIdx] = palette;
-            let subVal = row2[subIdx] || "";
-            let subSortIcon = (traChamSortState.colIdx === subIdx) 
-              ? (traChamSortState.asc ? ' <i class="fa-solid fa-sort-up" style="color:'+palette.text+'"></i>' : ' <i class="fa-solid fa-sort-down" style="color:'+palette.text+'"></i>') 
-              : ' <i class="fa-solid fa-sort text-muted opacity-50" style="font-size:0.65rem;"></i>';
-
-            tr2Html += `<th style="min-width: 100px; height: 35px; text-align: center; font-size: 0.75rem; background-color: ${palette.bg}; color: ${palette.text}; border-bottom: 1px solid ${palette.border};" onclick="sortTraChamTable(${subIdx})">${subVal} ${subSortIcon}</th>`;
-          }
-          i += spanCount;
-        }
-      }
-      tr1Html += "</tr>";
-      tr2Html += "</tr>";
-
-      thead.innerHTML = tr1Html + (tr2Html.includes("<th") ? tr2Html : "");
-
-      let sortedRows = [...tInfo.rows];
-      if (traChamSortState.colIdx !== null) {
-        let sCol = traChamSortState.colIdx;
-        let asc = traChamSortState.asc;
-        sortedRows.sort((a, b) => {
-          let vA = a[sCol];
-          let vB = b[sCol];
-          if (vA === undefined || vA === null || vA === "-") vA = 0;
-          if (vB === undefined || vB === null || vB === "-") vB = 0;
-          
-          if (typeof vA === 'string' && typeof vB === 'string') {
-            return asc ? vA.localeCompare(vB) : vB.localeCompare(vA);
-          }
-          return asc ? vA - vB : vB - vA;
-        });
-      }
-
-      tbody.innerHTML = "";
-      if (!sortedRows || sortedRows.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="${totalCols + 1}" class="text-center text-muted py-4"><i class="fa-solid fa-folder-open mb-2 fs-3"></i><br>Không có dữ liệu trả chậm</td></tr>`;
-        return;
-      }
-
-      sortedRows.forEach(function(row, index) {
-        var rank = index + 1;
-        var tr = document.createElement("tr");
-        
-        var rowHtml = `<td class="col-rank"><span class="rank-badge">${rank}</span></td>`;
-        
-        row.forEach(function(cell, idx) {
-          var cellVal = cell !== undefined && cell !== null && cell !== "" ? cell : "";
-          
-          let h1 = (row1[idx] || "").toLowerCase();
-          let h2 = (row2[idx] || "").toLowerCase();
-          var isPercentCol = h2 === '%' || h1.includes('%');
-
-          if (cellVal === 0 || cellVal === "0" || cellVal === 0.0 || cellVal === "0.0") {
-            cellVal = "-";
-          } else if (isPercentCol && typeof cellVal === 'number') {
-            cellVal = cellVal + "%";
-          } else if (isPercentCol && typeof cellVal === 'string' && cellVal !== "-" && !cellVal.endsWith("%")) {
-            cellVal = cellVal + "%";
-          }
-
-          let cellPalette = colPartnerMap[idx];
-          let customBgStyle = "";
-          if (cellPalette && cellVal !== "-") {
-            customBgStyle = `background-color: ${cellPalette.bg}; font-weight: 500; color: ${cellPalette.text};`;
-          }
-
-          var classAttr = idx === 0 ? "class='col-staff-name'" : "";
-          var alignStyle = idx === 0 ? "text-align: left;" : "text-align: center;";
-          rowHtml += `<td ${classAttr} style="${alignStyle} ${customBgStyle}">${typeof cellVal === 'number' ? formatNumber(cellVal) : cellVal}</td>`;
-        });
-        tr.innerHTML = rowHtml;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function formatNumber(num) {
-      if (!num && num !== 0) return "0";
-      return num.toLocaleString('vi-VN');
-    }
-
-    function handleError(errMsg) {
-      document.getElementById("loading").innerHTML = `
-        <div class="alert alert-danger text-center m-3">
-          <i class="fa-solid fa-triangle-exclamation mb-2 fs-3"></i><br>
-          <strong>Kết nối thất bại:</strong><br><small>${errMsg}</small>
-        </div>`;
-    }
-  </script>
-</body>
-</html>
+            return isAsc ? valA
