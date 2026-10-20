@@ -500,7 +500,7 @@
         </div>
       </div>
 
-      <!-- PAGE 3: HIỆU QUẢ (ĐƯỢC BỔ SUNG HOÀN CHỈNH) -->
+      <!-- PAGE 3: HIỆU QUẢ -->
       <div id="page-hieu-qua" class="page-section d-none">
         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
           <ul class="nav nav-pills nav-pills-store" id="hqStoreTab" role="tablist">
@@ -571,7 +571,7 @@
     let traChamSortState = { colIdx: null, asc: false };
     let currentActiveStoreTab = 'common';
     let currentCompStoreTab = 'st1';
-    let currentHqStore = 'st1'; // Mặc định Siêu thị 1 cho tab Hiệu quả
+    let currentHqStore = 'st1';
     let currentSearchQuery = '';
     let currentCompSearchQuery = '';
 
@@ -1132,7 +1132,7 @@
 
     function onDateSliderChange(val) {
       var selectedDate = hqDates[val];
-      document.getElementById("hq-date-display"].innerText = (selectedDate === "ALL") ? "Tất cả các ngày" : "Ngày: " + selectedDate;
+      document.getElementById("hq-date-display").innerText = (selectedDate === "ALL") ? "Tất cả các ngày" : "Ngày: " + selectedDate;
       applyHieuQuaFilter();
     }
 
