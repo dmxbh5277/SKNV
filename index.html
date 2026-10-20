@@ -73,7 +73,7 @@
       box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); 
     }
 
-    /* MOBILE BOTTOM NAVIGATION (ẨN TRÊN DESKTOP) */
+    /* MOBILE BOTTOM NAVIGATION */
     .mobile-bottom-nav {
       display: none;
       position: fixed;
@@ -135,6 +135,16 @@
     .kpi-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 8px; }
     .kpi-value { font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
 
+    /* FILTER BOX CHO TAB HIỆU QUẢ */
+    .filter-box {
+      background: #ffffff;
+      border-radius: var(--card-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
+    }
+
     /* TABLES */
     .table-container { 
       background: #ffffff; 
@@ -165,7 +175,6 @@
     .custom-table tbody tr { transition: opacity 0.2s ease-in-out, background-color 0.15s; }
     .custom-table tbody tr:hover { background-color: #f8fafc; }
 
-    /* CƠ CHẾ LÀM MỜ HÀNG KHÔNG ĐƯỢC CHỌN (GIỮ NGUYÊN THƯ VIỆN/THEAD) */
     tbody.row-focus-mode tr { opacity: 0.3; }
     tbody.row-focus-mode tr.selected-row {
       opacity: 1 !important;
@@ -174,7 +183,7 @@
       background-color: #e0e7ff !important;
     }
 
-    /* GIAO DIỆN TRẢ CHẬM */
+    /* TRẢ CHẬM TABLE */
     #tracham-table { table-layout: auto; min-width: 1500px; }
     #tracham-table th {
       background-color: #f8fafc;
@@ -213,7 +222,6 @@
       font-size: 0.8rem;
     }
 
-    /* CARD NGÀNH HÀNG MÀU SẮC NỔI BẬT */
     .cat-card-success {
       background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
       border: 1px solid #86efac !important;
@@ -227,7 +235,6 @@
       transition: transform 0.15s, box-shadow 0.15s;
     }
 
-    /* BADGE XẾP HẠNG GIỮA CARD */
     .card-rank-badge {
       font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 12px;
       background: #ffffff; color: #475569; border: 1px solid #cbd5e1;
@@ -252,23 +259,15 @@
     .ratio-badge { display: inline-block; padding: 5px 10px; border-radius: 20px; font-weight: 600; font-size: 0.8rem; background-color: #e0f2fe; color: #0284c7; }
     .loading-spinner { display: flex; justify-content: center; align-items: center; min-height: 300px; flex-direction: column; }
 
-    /* TỐI ƯU HÓA MOBILE (BREAKPOINT 768PX) */
     @media (max-width: 768px) {
-      /* Ẩn thanh sidebar dọc desktop */
       .sidebar { display: none !important; }
-      
-      /* Hiện thanh điều hướng dưới di động */
       .mobile-bottom-nav { display: flex; }
-
-      /* Mở rộng main content chiếm toàn bộ màn hình */
       .main-content { 
         margin-left: 0 !important; 
         width: 100% !important; 
         padding: 12px !important; 
-        padding-bottom: 80px !important; /* Tránh bị bottom nav che */
+        padding-bottom: 80px !important;
       }
-
-      /* Tối ưu top-bar cho màn hình nhỏ */
       .top-bar { 
         padding: 12px 16px; 
         flex-direction: row; 
@@ -279,8 +278,6 @@
       }
       .top-bar h5 { font-size: 1rem; }
       .top-bar button { font-size: 0.78rem; padding: 6px 12px; }
-
-      /* Tối ưu nhóm store pills và ô tìm kiếm */
       .d-flex.justify-content-between.align-items-center.mb-3.flex-wrap {
         flex-direction: column !important;
         align-items: stretch !important;
@@ -288,14 +285,11 @@
       }
       .nav-pills-store { width: 100%; justify-content: center; overflow-x: auto; }
       .input-group.input-group-sm.shadow-sm { max-width: 100% !important; }
-
-      /* Tối ưu KPI Cards thành lưới 2 cột cân đối */
       .row.g-3.mb-3 > div { width: 50% !important; }
       .kpi-card { padding: 12px; margin-bottom: 8px; border-radius: 12px; }
       .kpi-title { font-size: 0.65rem; }
       .kpi-value { font-size: 1.15rem; }
 
-      /* Ghim cố định cột STT và Tên NV khi cuộn ngang trên mobile */
       .custom-table th:nth-child(1), .custom-table td:nth-child(1) {
         position: sticky; left: 0; z-index: 3; background-color: #f8fafc;
       }
@@ -367,7 +361,6 @@
           </div>
         </div>
 
-        <!-- VÙNG TÌM KIẾM NHÂN VIÊN -->
         <div id="staff-search-results-container" class="mb-3 d-none">
           <div class="card border-0 shadow-sm p-3" style="border-radius: var(--card-radius); background: #f8fafc; border: 1px solid var(--border-color);">
             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -384,7 +377,6 @@
         </div>
 
         <div class="tab-content d-none" id="mainTabContent">
-          <!-- TAB CHUNG -->
           <div class="tab-pane fade show active" id="tab-common" role="tabpanel">
             <div class="row g-3 mb-3">
               <div class="col-md-3 col-6"><div class="kpi-card"><div class="kpi-title">Tổng Doanh Thu ST</div><div class="kpi-value text-indigo" style="color:var(--primary-color);" id="common-dtst">0</div></div></div>
@@ -414,7 +406,6 @@
             </div>
           </div>
 
-          <!-- TAB ST1 -->
           <div class="tab-pane fade" id="tab-st1" role="tabpanel">
             <div class="row g-3 mb-3">
               <div class="col-md-3 col-6"><div class="kpi-card"><div class="kpi-title">Tổng Doanh Thu ST</div><div class="kpi-value text-indigo" style="color:var(--primary-color);" id="st1-dtst">0</div></div></div>
@@ -441,7 +432,6 @@
             </div>
           </div>
 
-          <!-- TAB ST2 -->
           <div class="tab-pane fade" id="tab-st2" role="tabpanel">
             <div class="row g-3 mb-3">
               <div class="col-md-3 col-6"><div class="kpi-card"><div class="kpi-title">Tổng Doanh Thu ST</div><div class="kpi-value text-indigo" style="color:var(--primary-color);" id="st2-dtst">0</div></div></div>
@@ -484,7 +474,6 @@
           </div>
         </div>
 
-        <!-- VÙNG KẾT QUẢ TÌM KIẾM CÓ XẾP HẠNG Ở GIỮA CARD -->
         <div id="comp-staff-search-results-container" class="mb-3 d-none">
           <div class="card border-0 shadow-sm p-3" style="border-radius: var(--card-radius); background: #ffffff; border: 1px solid var(--border-color);">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -511,8 +500,48 @@
         </div>
       </div>
 
-      <!-- PAGE 3: HIỆU QUẢ -->
-      <div id="page-hieu-qua" class="page-section d-none"><div class="table-container text-center py-5"><h5>Chỉ Số Hiệu Quả</h5></div></div>
+      <!-- PAGE 3: HIỆU QUẢ (ĐƯỢC BỔ SUNG HOÀN CHỈNH) -->
+      <div id="page-hieu-qua" class="page-section d-none">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+          <ul class="nav nav-pills nav-pills-store" id="hqStoreTab" role="tablist">
+            <li class="nav-item"><button class="nav-link active" id="hq-st1-tab" onclick="setHqStore('st1', this)" type="button"><i class="fa-solid fa-store me-1"></i>Siêu Thị 1</button></li>
+            <li class="nav-item"><button class="nav-link" id="hq-st2-tab" onclick="setHqStore('st2', this)" type="button"><i class="fa-solid fa-store me-1"></i>Siêu Thị 2</button></li>
+          </ul>
+        </div>
+
+        <!-- BỘ LỌC TÊN NHÂN VIÊN & THANH TRƯỢT NGÀY -->
+        <div class="filter-box">
+          <div class="row g-3 align-items-center">
+            <div class="col-md-5">
+              <label class="form-label fw-bold text-secondary small mb-1"><i class="fa-solid fa-user me-1 text-primary"></i>Lọc Tên Nhân Viên:</label>
+              <select id="hq-staff-select" class="form-select form-select-sm" onchange="applyHieuQuaFilter()">
+                <option value="ALL">-- Tất cả Nhân Viên --</option>
+              </select>
+            </div>
+            <div class="col-md-7">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <label class="form-label fw-bold text-secondary small mb-0"><i class="fa-solid fa-calendar-day me-1 text-primary"></i>Lọc Theo Ngày (Thanh Trượt):</label>
+                <span class="badge bg-indigo text-white px-2 py-1" id="hq-date-display" style="background-color: var(--primary-color);">Tất cả ngày</span>
+              </div>
+              <input type="range" class="form-range" id="hq-date-slider" min="0" max="0" value="0" oninput="onDateSliderChange(this.value)">
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mb-3">
+          <div class="col-md-4 col-6"><div class="kpi-card"><div class="kpi-title">Tổng Doanh Thu SP Chính</div><div class="kpi-value text-success" id="hq-total-rev">0 đ</div></div></div>
+          <div class="col-md-4 col-6"><div class="kpi-card"><div class="kpi-title">Tổng Số Lượng Bán</div><div class="kpi-value text-indigo" style="color:var(--primary-color);" id="hq-total-qty">0</div></div></div>
+          <div class="col-md-4 col-12"><div class="kpi-card"><div class="kpi-title">SP Bán Chạy Nhất</div><div class="kpi-value text-warning fs-5 text-truncate" id="hq-top-product">-</div></div></div>
+        </div>
+
+        <div class="table-container">
+          <h6 class="fw-bold mb-3 text-success"><i class="fa-solid fa-chart-line me-2"></i>Thống Kê Hiệu Quả Sản Phẩm Chính Theo Nhân Viên</h6>
+          <table class="table custom-table" id="hq-table">
+            <thead id="hq-thead"></thead>
+            <tbody id="hq-tbody"></tbody>
+          </table>
+        </div>
+      </div>
 
       <!-- PAGE 4: TRẢ CHẬM -->
       <div id="page-tra-cham" class="page-section d-none">
@@ -542,6 +571,7 @@
     let traChamSortState = { colIdx: null, asc: false };
     let currentActiveStoreTab = 'common';
     let currentCompStoreTab = 'st1';
+    let currentHqStore = 'st1'; // Mặc định Siêu thị 1 cho tab Hiệu quả
     let currentSearchQuery = '';
     let currentCompSearchQuery = '';
 
@@ -559,7 +589,6 @@
     document.addEventListener("DOMContentLoaded", function() {
       fetchDataWithTimeout();
 
-      // HÀM CLICK LÀM MỜ HÀNG KHÁC & NỔI BẬT HÀNG ĐƯỢC CHỌN
       document.addEventListener("click", function(event) {
         var tr = event.target.closest("tr");
         if (!tr) return;
@@ -609,18 +638,15 @@
     });
 
     function switchSidebarTab(tabId, element) {
-      // Đồng bộ trạng thái active cho cả desktop sidebar và mobile bottom nav
       document.querySelectorAll('.sidebar-menu .menu-link').forEach(link => link.classList.remove('active'));
       document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
 
       if (element.classList.contains('menu-link')) {
         element.classList.add('active');
-        // Đồng bộ sang mobile nav tương ứng
         const index = Array.from(document.querySelectorAll('.sidebar-menu .menu-link')).indexOf(element);
         if (index >= 0) document.querySelectorAll('.mobile-bottom-nav .nav-item')[index].classList.add('active');
       } else if (element.classList.contains('nav-item')) {
         element.classList.add('active');
-        // Đồng bộ sang desktop menu tương ứng
         const index = Array.from(document.querySelectorAll('.mobile-bottom-nav .nav-item')).indexOf(element);
         if (index >= 0) document.querySelectorAll('.sidebar-menu .menu-link')[index].classList.add('active');
       }
@@ -637,8 +663,9 @@
         document.getElementById('page-nganh-hang').classList.remove('d-none');
         if (globalData) renderCompetitionTables(globalData);
       } else if (tabId === 'hieu-qua') {
-        pageTitle.innerHTML = '<i class="fa-solid fa-chart-line text-success me-2"></i>Chỉ Số Hiệu Quả';
+        pageTitle.innerHTML = '<i class="fa-solid fa-chart-line text-success me-2"></i>Chỉ Số Hiệu Quả (Sản Phẩm Chính)';
         document.getElementById('page-hieu-qua').classList.remove('d-none');
+        if (globalData) initHieuQuaTab(globalData);
       } else if (tabId === 'tra-cham') {
         pageTitle.innerHTML = '<i class="fa-solid fa-credit-card text-info me-2"></i>Phân Tích Trả Chậm';
         document.getElementById('page-tra-cham').classList.remove('d-none');
@@ -660,10 +687,7 @@
       var separator = urlInput.indexOf("?") !== -1 ? "&" : "?";
       var fullUrl = urlInput + separator + cacheBuster;
 
-      fetch(fullUrl, {
-        method: "GET",
-        redirect: "follow"
-      })
+      fetch(fullUrl, { method: "GET", redirect: "follow" })
       .then(function(response) {
         if (!response.ok) throw new Error("Lỗi kết nối server: " + response.status);
         return response.json();
@@ -714,6 +738,7 @@
       renderRevenueTables();
       renderCompetitionTables(data);
       renderTraChamTable(data);
+      initHieuQuaTab(data);
     }
 
     function fillKPI(prefix, summary) {
@@ -1058,6 +1083,143 @@
           rowHtml += `<td class="${cellClass}" style="text-align: left;">${val === 0 ? "-" : formatNumber(val)}</td>`;
         });
         var tr = document.createElement("tr");
+        tr.innerHTML = rowHtml;
+        tbody.appendChild(tr);
+      });
+    }
+
+    /* --- LOGIC TAB HIỆU QUẢ --- */
+    let hqDates = [];
+
+    function setHqStore(storeKey, btnEl) {
+      currentHqStore = storeKey;
+      document.querySelectorAll('#hqStoreTab .nav-link').forEach(el => el.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      initHieuQuaTab(globalData);
+    }
+
+    function initHieuQuaTab(data) {
+      if (!data || !data.hieuQuaData) return;
+      var hq = data.hieuQuaData;
+
+      let validStaffs = hq.staffs;
+      if (currentHqStore === 'st1' && data.store1 && data.store1.staffList) {
+        let st1Names = data.store1.staffList.map(s => s.name);
+        validStaffs = hq.staffs.filter(s => st1Names.includes(s));
+      } else if (currentHqStore === 'st2' && data.store2 && data.store2.staffList) {
+        let st2Names = data.store2.staffList.map(s => s.name);
+        validStaffs = hq.staffs.filter(s => st2Names.includes(s));
+      }
+
+      var select = document.getElementById("hq-staff-select");
+      var currentSelected = select.value;
+      select.innerHTML = '<option value="ALL">-- Tất cả Nhân Viên --</option>';
+      validStaffs.forEach(function(s) {
+        select.innerHTML += `<option value="${s}">${s}</option>`;
+      });
+      if (validStaffs.includes(currentSelected)) {
+        select.value = currentSelected;
+      }
+
+      hqDates = ["ALL"].concat(hq.dates || []);
+      var slider = document.getElementById("hq-date-slider");
+      slider.min = 0;
+      slider.max = hqDates.length - 1;
+      if (slider.value >= hqDates.length) slider.value = 0;
+      
+      onDateSliderChange(slider.value);
+    }
+
+    function onDateSliderChange(val) {
+      var selectedDate = hqDates[val];
+      document.getElementById("hq-date-display"].innerText = (selectedDate === "ALL") ? "Tất cả các ngày" : "Ngày: " + selectedDate;
+      applyHieuQuaFilter();
+    }
+
+    function applyHieuQuaFilter() {
+      if (!globalData || !globalData.hieuQuaData) return;
+      var hq = globalData.hieuQuaData;
+      var selectedStaff = document.getElementById("hq-staff-select").value;
+      var dateIdx = document.getElementById("hq-date-slider").value;
+      var selectedDate = hqDates[dateIdx];
+
+      let allowedStaffs = null;
+      if (currentHqStore === 'st1' && globalData.store1 && globalData.store1.staffList) {
+        allowedStaffs = globalData.store1.staffList.map(s => s.name);
+      } else if (currentHqStore === 'st2' && globalData.store2 && globalData.store2.staffList) {
+        allowedStaffs = globalData.store2.staffList.map(s => s.name);
+      }
+
+      var filteredRecords = hq.records.filter(function(r) {
+        var matchStore = allowedStaffs ? allowedStaffs.includes(r.staff) : true;
+        var matchStaff = (selectedStaff === "ALL" || r.staff === selectedStaff);
+        var matchDate = (selectedDate === "ALL" || r.date === selectedDate);
+        return matchStore && matchStaff && matchDate;
+      });
+
+      var products = hq.products;
+      var matrix = {};
+      var totalRev = 0;
+      var totalQty = 0;
+      var productTotals = {};
+
+      filteredRecords.forEach(function(r) {
+        totalRev += r.rev;
+        totalQty += r.qty;
+
+        if (!productTotals[r.product]) productTotals[r.product] = 0;
+        productTotals[r.product] += r.qty;
+
+        if (!matrix[r.staff]) matrix[r.staff] = { name: r.staff, qtyMap: {}, totalRev: 0, totalQty: 0 };
+        if (!matrix[r.staff].qtyMap[r.product]) matrix[r.staff].qtyMap[r.product] = 0;
+
+        matrix[r.staff].qtyMap[r.product] += r.qty;
+        matrix[r.staff].totalRev += r.rev;
+        matrix[r.staff].totalQty += r.qty;
+      });
+
+      document.getElementById("hq-total-rev").innerText = formatNumber(totalRev) + " đ";
+      document.getElementById("hq-total-qty").innerText = formatNumber(totalQty);
+
+      var topProd = "-";
+      var maxPQty = 0;
+      for (var p in productTotals) {
+        if (productTotals[p] > maxPQty) {
+          maxPQty = productTotals[p];
+          topProd = p;
+        }
+      }
+      document.getElementById("hq-top-product").innerText = topProd !== "-" ? topProd + " (" + maxPQty + ")" : "-";
+
+      var thead = document.getElementById("hq-thead");
+      var tbody = document.getElementById("hq-tbody");
+
+      var headHtml = `<tr><th style="width:50px; text-align:center;">STT</th><th style="text-align:left; min-width:160px;">Tên Nhân Viên</th>`;
+      products.forEach(function(p) { headHtml += `<th style="text-align:center;">${p}</th>`; });
+      headHtml += `<th style="text-align:center;">Tổng Số Lượng</th><th style="text-align:right;">Tổng Doanh Thu</th></tr>`;
+      thead.innerHTML = headHtml;
+
+      tbody.innerHTML = "";
+      var staffRows = Object.values(matrix);
+      if (staffRows.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="${products.length + 4}" class="text-center text-muted py-4">Không có dữ liệu phù hợp bộ lọc</td></tr>`;
+        return;
+      }
+
+      staffRows.sort((a, b) => b.totalRev - a.totalRev);
+
+      staffRows.forEach(function(s, idx) {
+        var tr = document.createElement("tr");
+        var rowHtml = `<td style="text-align:center;"><span class="rank-badge">${idx + 1}</span></td><td class="fw-semibold text-dark" style="text-align:left;">${s.name}</td>`;
+        
+        products.forEach(function(p) {
+          var q = s.qtyMap[p] || 0;
+          rowHtml += `<td style="text-align:center;">${q === 0 ? "-" : formatNumber(q)}</td>`;
+        });
+
+        rowHtml += `<td class="fw-bold text-indigo" style="text-align:center; color:var(--primary-color);">${formatNumber(s.totalQty)}</td>`;
+        rowHtml += `<td class="fw-bold text-success" style="text-align:right;">${formatNumber(s.totalRev)} đ</td>`;
+        
         tr.innerHTML = rowHtml;
         tbody.appendChild(tr);
       });
