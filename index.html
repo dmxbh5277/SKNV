@@ -10,298 +10,248 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --primary-color: #4f46e5;
-      --primary-hover: #4338ca;
-      --sidebar-bg: #0f172a;
-      --sidebar-width: 260px;
-      --bg-dashboard: #f1f5f9;
-      --card-radius: 16px;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-    }
+:root {
+  color-scheme: light;
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-soft: #eff6ff;
+  --sidebar-bg: #101b33;
+  --sidebar-width: 260px;
+  --bg-dashboard: #f4f7fb;
+  --surface: #ffffff;
+  --card-radius: 16px;
+  --text-main: #172033;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --success: #15803d;
+  --warning: #b45309;
+  --danger: #b91c1c;
+  --info: #0e7490;
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, .045), 0 1px 2px rgba(15, 23, 42, .04);
+  --shadow-raised: 0 14px 32px rgba(15, 23, 42, .09);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+}
 
-    body { 
-      font-family: 'Inter', sans-serif; 
-      background-color: var(--bg-dashboard); 
-      color: var(--text-main); 
-      margin: 0; 
-      padding: 0; 
-      overflow-x: hidden; 
-    }
+*, *::before, *::after { box-sizing: border-box; }
+html { min-width: 320px; scroll-behavior: smooth; }
+body {
+  min-width: 320px;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: var(--bg-dashboard);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea { font: inherit; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid rgba(37, 99, 235, .45); outline-offset: 2px; }
+.app-wrapper { display: flex; min-height: 100vh; min-height: 100dvh; }
 
-    .app-wrapper { display: flex; min-height: 100vh; }
+/* Desktop navigation */
+.sidebar {
+  position: fixed; inset: 0 auto 0 0; z-index: 1000;
+  display: flex; flex-direction: column; flex-shrink: 0;
+  width: var(--sidebar-width); color: #cbd5e1; background: var(--sidebar-bg);
+  box-shadow: 8px 0 28px rgba(15, 23, 42, .08);
+}
+.sidebar-brand {
+  display: flex; align-items: center; min-height: 78px; padding: 20px 22px;
+  border-bottom: 1px solid rgba(226, 232, 240, .1); color: #fff;
+  font-size: 1rem; font-weight: 750; letter-spacing: .045em;
+}
+.sidebar-brand i { color: #60a5fa !important; }
+.sidebar-menu { flex-grow: 1; list-style: none; margin: 0; padding: 18px 12px; }
+.sidebar-menu .menu-item { margin-bottom: 6px; }
+.sidebar-menu .menu-link {
+  display: flex; align-items: center; min-height: 46px; padding: 11px 14px;
+  border: 1px solid transparent; border-radius: 11px; color: #a9b7cb;
+  font-size: .88rem; font-weight: 550; text-decoration: none;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+.sidebar-menu .menu-link i { width: 24px; margin-right: 11px; color: #8495af; font-size: 1rem; text-align: center; transition: color .18s ease; }
+.sidebar-menu .menu-link:hover { background: rgba(255,255,255,.07); color: #fff; }
+.sidebar-menu .menu-link:hover i { color: #bfdbfe; }
+.sidebar-menu .menu-link.active {
+  border-color: rgba(147, 197, 253, .2); color: #fff;
+  background: linear-gradient(105deg, rgba(37,99,235,.95), rgba(29,78,216,.78));
+  box-shadow: 0 7px 18px rgba(30, 64, 175, .24);
+}
+.sidebar-menu .menu-link.active i { color: #dbeafe; }
 
-    /* SIDEBAR DESKTOP */
-    .sidebar {
-      width: var(--sidebar-width);
-      background: var(--sidebar-bg);
-      color: #94a3b8;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      top: 0; bottom: 0; left: 0;
-      z-index: 1000;
-      box-shadow: 4px 0 25px rgba(0,0,0,0.05);
-    }
+.main-content {
+  flex: 1 1 auto; min-width: 0; width: calc(100% - var(--sidebar-width));
+  margin-left: var(--sidebar-width); padding: 26px 30px 32px;
+}
+.top-bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+  margin-bottom: 24px; padding: 17px 22px; border: 1px solid var(--border-color);
+  border-radius: var(--card-radius); background: var(--surface); box-shadow: var(--shadow-card);
+}
+.top-bar h5 { margin: 0; color: #14213a; font-size: 1.15rem; font-weight: 750; letter-spacing: -.025em; }
+.top-bar button { min-height: 40px; border-radius: 10px; font-weight: 650; }
+.nav-pills-store {
+  display: inline-flex; max-width: 100%; gap: 4px; padding: 4px; overflow-x: auto;
+  border: 1px solid var(--border-color); border-radius: 12px; background: #f6f8fc;
+  scrollbar-width: thin;
+}
+.nav-pills-store .nav-link {
+  flex: 0 0 auto; padding: 8px 15px; border-radius: 9px; color: var(--text-muted);
+  font-size: .84rem; font-weight: 650; white-space: nowrap; transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
+}
+.nav-pills-store .nav-link:hover { color: var(--primary-color); }
+.nav-pills-store .nav-link.active { color: #fff; background: var(--primary-color); box-shadow: 0 3px 9px rgba(37,99,235,.23); }
 
-    .sidebar-brand { 
-      padding: 24px 20px; 
-      font-size: 1.15rem; 
-      font-weight: 700; 
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,0.08); 
-    }
+/* Cards and controls */
+.kpi-card, .table-container {
+  min-width: 0; border: 1px solid var(--border-color); border-radius: var(--card-radius);
+  background: var(--surface); box-shadow: var(--shadow-card);
+}
+.kpi-card {
+  position: relative; height: calc(100% - 16px); min-height: 112px; margin-bottom: 16px;
+  padding: 19px 20px; overflow: hidden; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.kpi-card::before { position: absolute; inset: 0 auto 0 0; width: 3px; background: #bfdbfe; content: ''; }
+.kpi-card:hover { transform: translateY(-2px); border-color: #cbdaf1; box-shadow: var(--shadow-raised); }
+.kpi-title { margin-bottom: 9px; color: var(--text-muted); font-size: .7rem; font-weight: 750; letter-spacing: .075em; line-height: 1.4; text-transform: uppercase; }
+.kpi-value { overflow-wrap: anywhere; color: var(--text-main); font-size: clamp(1.15rem, 1.55vw, 1.55rem); font-variant-numeric: tabular-nums; font-weight: 750; letter-spacing: -.035em; line-height: 1.2; }
+.table-container { margin-bottom: 20px; padding: 20px; overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scrollbar-color: #cbd5e1 transparent; scrollbar-width: thin; }
+.table-container > h6, .table-container .d-flex > h6 { color: #25334a; font-weight: 700; letter-spacing: -.012em; }
+.table-container::-webkit-scrollbar { height: 8px; }
+.table-container::-webkit-scrollbar-thumb { border: 2px solid #fff; border-radius: 99px; background: #cbd5e1; }
+.table-container::-webkit-scrollbar-track { background: transparent; }
+.custom-table { width: 100%; min-width: 620px; margin-bottom: 0; border-collapse: separate; border-spacing: 0; color: #334155; font-size: .83rem; font-variant-numeric: tabular-nums; }
+.custom-table th {
+  padding: 12px 12px; border-bottom: 1px solid #dbe3ef; background: #f5f8fc;
+  color: #475569; font-size: .72rem; font-weight: 750; letter-spacing: .035em;
+  line-height: 1.4; text-transform: uppercase; user-select: none; vertical-align: middle;
+  white-space: nowrap; cursor: pointer; transition: background-color .15s ease, color .15s ease;
+}
+.custom-table th:hover { background: #edf3fb; color: var(--primary-color); }
+.custom-table td { padding: 11px 12px; border-bottom: 1px solid #edf1f6; background-clip: padding-box; vertical-align: middle; white-space: nowrap; }
+.custom-table tbody tr { transition: background-color .15s ease, opacity .15s ease; }
+.custom-table tbody tr:hover td { background-color: #f7faff; }
+.custom-table tbody tr:last-child td { border-bottom: 0; }
+tbody.row-focus-mode tr { opacity: .32; }
+tbody.row-focus-mode tr.selected-row { opacity: 1 !important; background: #eff6ff !important; box-shadow: inset 0 0 0 2px var(--primary-color); font-weight: 550; }
+#tracham-table { min-width: 1500px; table-layout: auto; }
+#tracham-table th { padding: 10px; border-right: 1px solid #e8edf4; border-bottom: 2px solid #d5dfec; background: #f3f7fc; color: #334155; font-size: .78rem; font-weight: 700; line-height: 1.4; text-align: center; vertical-align: middle; white-space: normal !important; word-break: break-word; }
+#tracham-table td { padding: 11px 10px; border-right: 1px solid #edf1f6; border-bottom: 1px solid #edf1f6; font-size: .82rem; text-align: center; }
+#tracham-table td.col-rank { width: 60px; background: #fff; }
+#tracham-table td.col-staff-name { min-width: 180px; background: #f8fafc; color: #0f172a; font-weight: 650; text-align: left; white-space: nowrap; }
+.comp-table { min-width: 1000px; }
+.comp-table th.col-cat { min-width: 90px; height: 60px; font-size: .76rem; line-height: 1.3; white-space: normal !important; word-wrap: break-word; }
+.cat-card-success { border: 1px solid #86efac !important; background: linear-gradient(135deg,#f0fdf4,#e5f8eb); box-shadow: 0 2px 8px rgba(34,197,94,.07); transition: transform .15s ease, box-shadow .15s ease; }
+.cat-card-danger { border: 1px solid #fda4af !important; background: linear-gradient(135deg,#fff1f2,#ffeaed); box-shadow: 0 2px 8px rgba(239,68,68,.07); transition: transform .15s ease, box-shadow .15s ease; }
+.cat-card-success:hover, .cat-card-danger:hover { transform: translateY(-1px); box-shadow: 0 5px 12px rgba(15,23,42,.08); }
+.card-rank-badge { display: inline-flex; align-items: center; padding: 2px 8px; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; color: #475569; font-size: .7rem; font-weight: 700; }
+.card-rank-badge.top-1 { border-color: #fde047; background: #fef9c3; color: #854d0e; }
+.card-rank-badge.top-2 { border-color: #cbd5e1; background: #e2e8f0; color: #334155; }
+.card-rank-badge.top-3 { border-color: #fed7aa; background: #ffedd5; color: #9a3412; }
+.val-below-avg { border-radius: 5px; background: #fef2f2; color: #b91c1c !important; font-weight: 700; }
+.table-highlight-row { background: #fffbeb !important; }
+.rank-badge { display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center; border-radius: 50%; background: #eef2f7; color: #475569; font-size: .78rem; font-weight: 750; }
+tr:nth-child(1) .rank-badge { background: linear-gradient(135deg,#fbbf24,#d97706); color: #fff; box-shadow: 0 2px 7px rgba(245,158,11,.28); }
+tr:nth-child(2) .rank-badge { background: linear-gradient(135deg,#94a3b8,#64748b); color: #fff; }
+tr:nth-child(3) .rank-badge { background: linear-gradient(135deg,#fb923c,#c2410c); color: #fff; }
+.ratio-badge { display: inline-block; padding: 5px 10px; border-radius: 20px; background: #e0f2fe; color: #0369a1; font-size: .78rem; font-weight: 700; }
+.loading-spinner { display: flex; min-height: 300px; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
 
-    .sidebar-menu { list-style: none; padding: 20px 12px; margin: 0; flex-grow: 1; }
-    .sidebar-menu .menu-item { margin-bottom: 8px; }
+/* Form and button consistency */
+.form-control, .form-select { min-height: 40px; border-color: #cbd5e1; border-radius: 9px; color: var(--text-main); }
+.form-control:focus, .form-select:focus { border-color: #60a5fa; box-shadow: 0 0 0 .2rem rgba(37,99,235,.14); }
+.btn { border-radius: 9px; font-weight: 600; transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease; }
+.btn-primary { border-color: var(--primary-color); background: var(--primary-color); }
+.btn-primary:hover { border-color: var(--primary-hover); background: var(--primary-hover); }
+.btn-outline-primary { border-color: #bfdbfe; color: #1d4ed8; }
+.btn-outline-primary:hover, .btn-outline-primary.active { border-color: var(--primary-color); background: var(--primary-color); color: #fff; }
+.badge { font-weight: 650; }
+.tab-content, .tab-pane, .page-section { min-width: 0; }
+#hq-tabs, #nv-subtabs { max-width: 100%; }
+.hq-table { min-width: 760px; }
+.hq-table td:nth-child(n+2), .hq-table th:nth-child(n+2) { text-align: right; }
+.hq-table th:nth-child(1), .hq-table td:nth-child(1) { min-width: 150px; text-align: left; }
+.custom-table.hq-table th:nth-child(2), .custom-table.hq-table td:nth-child(2) { position: static; left: auto; box-shadow: none; }
+.hq-table tr.hq-total td { border-top: 2px solid #dbe3ef; background: #f5f8fc; font-weight: 750; }
+.hq-table tr.hq-zero td { color: #94a3b8; }
+.nv-overlay { position: fixed; inset: 0; z-index: 2000; display: none; align-items: flex-start; justify-content: center; padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom)); overflow-y: auto; background: rgba(15,23,42,.62); }
+.nv-modal { width: 100%; max-width: 760px; margin: 24px auto; padding: 22px; border: 1px solid rgba(226,232,240,.85); border-radius: 16px; background: #fff; box-shadow: 0 20px 50px rgba(15,23,42,.24); }
+.nv-msg { min-height: 1.2rem; font-size: .85rem; }
 
-    .sidebar-menu .menu-link {
-      display: flex; align-items: center; padding: 12px 16px; 
-      color: #94a3b8; text-decoration: none; border-radius: 12px; 
-      font-weight: 500; font-size: 0.9rem; transition: all 0.2s ease-in-out;
-    }
-    .sidebar-menu .menu-link i { width: 24px; font-size: 1.1rem; margin-right: 12px; transition: transform 0.2s; }
-    .sidebar-menu .menu-link:hover { background: rgba(255,255,255,0.05); color: #ffffff; }
-    .sidebar-menu .menu-link.active { 
-      background: linear-gradient(135deg, var(--primary-color) 0%, #6366f1 100%); 
-      color: #ffffff; 
-      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); 
-    }
+.mobile-bottom-nav { display: none; }
+@media (min-width: 769px) and (max-width: 1100px) {
+  :root { --sidebar-width: 228px; }
+  .main-content { padding: 22px; }
+  .table-container { padding: 17px; }
+}
+@media (max-width: 768px) {
+  .sidebar { display: none !important; }
+  .mobile-bottom-nav {
+    position: fixed; right: 0; bottom: 0; left: 0; z-index: 2000;
+    display: flex; min-height: calc(62px + env(safe-area-inset-bottom));
+    align-items: center; justify-content: space-around;
+    padding: 5px 4px calc(5px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(226,232,240,.9); background: rgba(255,255,255,.98);
+    box-shadow: 0 -8px 24px rgba(15,23,42,.09);
+  }
+  .mobile-bottom-nav .nav-item {
+    display: flex; min-width: 0; min-height: 48px; flex: 1 1 20%;
+    flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    border-radius: 10px; color: #64748b; font-size: clamp(.58rem, 2.1vw, .68rem);
+    font-weight: 650; line-height: 1.1; text-decoration: none; white-space: nowrap;
+  }
+  .mobile-bottom-nav .nav-item i { margin-bottom: 1px; font-size: 1.08rem; }
+  .mobile-bottom-nav .nav-item.active { color: var(--primary-color); background: #eff6ff; }
+  .main-content { width: 100% !important; min-width: 0; margin-left: 0 !important; padding: 12px 12px calc(86px + env(safe-area-inset-bottom)) !important; }
+  .top-bar { gap: 9px; margin-bottom: 14px; padding: 12px 14px; border-radius: 13px; }
+  .top-bar h5 { font-size: 1rem; }
+  .top-bar button { min-height: 38px; padding: 7px 11px; font-size: .76rem; }
+  .d-flex.justify-content-between.align-items-center.mb-3.flex-wrap { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
+  .nav-pills-store { width: 100%; justify-content: flex-start; }
+  .input-group.input-group-sm.shadow-sm { max-width: 100% !important; }
+  .row.g-3.mb-3 > div { width: 50% !important; }
+  .kpi-card { height: calc(100% - 8px); min-height: 96px; margin-bottom: 8px; padding: 12px; border-radius: 13px; }
+  .kpi-title { margin-bottom: 7px; font-size: .61rem; letter-spacing: .045em; }
+  .kpi-value { font-size: clamp(1rem, 4.4vw, 1.3rem); }
+  .table-container { max-width: 100%; margin-bottom: 14px; padding: 13px; border-radius: 13px; }
+  .custom-table { font-size: .76rem; }
+  .custom-table th, .custom-table td { padding: 9px 8px; }
+  .custom-table:not(.hq-table) th:nth-child(1), .custom-table:not(.hq-table) td:nth-child(1) { position: sticky; left: 0; z-index: 3; min-width: 48px; background: #f5f8fc; }
+  .custom-table:not(.hq-table) th:nth-child(2), .custom-table:not(.hq-table) td:nth-child(2) { position: sticky; left: 48px; z-index: 3; min-width: 138px; background: #fff; box-shadow: 3px 0 7px rgba(15,23,42,.07); }
+  .custom-table:not(.hq-table) tbody tr:hover td:nth-child(2) { background: #f7faff; }
+  .custom-table.comp-table th:nth-child(1), .custom-table.comp-table td:nth-child(1) { left: 0; }
+  .custom-table.comp-table th:nth-child(2), .custom-table.comp-table td:nth-child(2) { left: 48px; }
+  #tracham-table { min-width: 1450px; }
+  #tracham-table td.col-staff-name { min-width: 160px; }
+  #hq-tabs, #nv-subtabs { display: flex; width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+  #hq-tabs .btn, #nv-subtabs .btn { flex: 0 0 auto; min-height: 42px; white-space: nowrap; }
+  .hq-table { min-width: 740px; }
+  .nv-modal { margin: 10px auto; padding: 16px; border-radius: 13px; }
+  #nv-main > .table-container { align-items: stretch !important; }
+  #nv-main > .table-container > .d-flex { width: 100%; flex-wrap: wrap; }
+}
+@media (max-width: 380px) {
+  .main-content { padding-right: 9px !important; padding-left: 9px !important; }
+  .top-bar { padding: 10px 11px; }
+  .top-bar h5 { font-size: .92rem; }
+  .kpi-card { padding: 10px; }
+  .kpi-title { font-size: .57rem; }
+  .kpi-value { font-size: 1rem; }
+  .table-container { padding: 10px; }
+  .mobile-bottom-nav .nav-item { font-size: .56rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
 
-    /* MOBILE BOTTOM NAVIGATION */
-    .mobile-bottom-nav {
-      display: none;
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 60px;
-      background: var(--sidebar-bg);
-      z-index: 2000;
-      justify-content: space-around;
-      align-items: center;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .mobile-bottom-nav .nav-item {
-      color: #94a3b8;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 0.65rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .mobile-bottom-nav .nav-item i { font-size: 1.2rem; margin-bottom: 2px; }
-    .mobile-bottom-nav .nav-item.active { color: #ffffff; }
-
-    .main-content { 
-      flex-grow: 1; 
-      margin-left: var(--sidebar-width); 
-      padding: 24px; 
-      width: calc(100% - var(--sidebar-width)); 
-    }
-
-    /* TOP BAR */
-    .top-bar {
-      background: #ffffff; 
-      border-radius: var(--card-radius); 
-      padding: 16px 24px; 
-      margin-bottom: 24px;
-      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); 
-      border: 1px solid var(--border-color);
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
-    }
-
-    .nav-pills-store { background: #f8fafc; padding: 6px; border-radius: 20px; border: 1px solid var(--border-color); display: inline-flex; }
-    .nav-pills-store .nav-link { border-radius: 16px; color: var(--text-muted); font-weight: 600; font-size: 0.85rem; padding: 8px 18px; transition: all 0.2s; }
-    .nav-pills-store .nav-link.active { background-color: var(--primary-color); color: #ffffff; box-shadow: 0 2px 10px rgba(79,70,229,0.3); }
-
-    /* KPI CARDS */
-    .kpi-card { 
-      background: #ffffff; 
-      border-radius: var(--card-radius); 
-      padding: 20px; 
-      margin-bottom: 16px; 
-      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); 
-      border: 1px solid var(--border-color);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08); }
-    .kpi-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 8px; }
-    .kpi-value { font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
-
-    /* FILTER BOX CHO TAB HIỆU QUẢ */
-    .filter-box {
-      background: #ffffff;
-      border-radius: var(--card-radius);
-      padding: 20px;
-      margin-bottom: 20px;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03);
-    }
-
-    /* TABLES */
-    .table-container { 
-      background: #ffffff; 
-      border-radius: var(--card-radius); 
-      padding: 20px; 
-      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.03); 
-      border: 1px solid var(--border-color);
-      margin-bottom: 20px; 
-      overflow-x: auto; 
-      -webkit-overflow-scrolling: touch;
-    }
-    
-    .custom-table { width: 100%; font-size: 0.875rem; margin-bottom: 0; border-collapse: separate; border-spacing: 0; }
-    .custom-table th { 
-      background-color: #f8fafc; 
-      color: #475569; 
-      font-weight: 600; 
-      border-bottom: 2px solid var(--border-color); 
-      padding: 14px 12px; 
-      user-select: none;
-      vertical-align: middle;
-      white-space: nowrap;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .custom-table th:hover { background-color: #f1f5f9; color: var(--primary-color); }
-    .custom-table td { padding: 14px 12px; vertical-align: middle; border-bottom: 1px solid #f1f5f9; white-space: nowrap; }
-    .custom-table tbody tr { transition: opacity 0.2s ease-in-out, background-color 0.15s; }
-    .custom-table tbody tr:hover { background-color: #f8fafc; }
-
-    tbody.row-focus-mode tr { opacity: 0.3; }
-    tbody.row-focus-mode tr.selected-row {
-      opacity: 1 !important;
-      font-weight: 500;
-      box-shadow: inset 0 0 0 2px var(--primary-color);
-      background-color: #e0e7ff !important;
-    }
-
-    /* TRẢ CHẬM TABLE */
-    #tracham-table { table-layout: auto; min-width: 1500px; }
-    #tracham-table th {
-      background-color: #f8fafc;
-      border-bottom: 2px solid #cbd5e1;
-      border-right: 1px solid #f1f5f9;
-      color: #334155;
-      font-weight: 600;
-      padding: 10px 10px;
-      vertical-align: middle;
-      text-align: center;
-      cursor: pointer;
-      white-space: normal !important;
-      word-wrap: break-word;
-      word-break: break-word;
-      line-height: 1.35;
-      font-size: 0.82rem;
-    }
-    #tracham-table td {
-      border-bottom: 1px solid #f1f5f9;
-      border-right: 1px solid #f8fafc;
-      padding: 12px 10px;
-      vertical-align: middle;
-      text-align: center;
-      font-size: 0.85rem;
-    }
-    #tracham-table td.col-rank { width: 60px; text-align: center; background-color: #ffffff; }
-    #tracham-table td.col-staff-name { text-align: left; font-weight: 600; color: #0f172a; white-space: nowrap; background-color: #fafafa; min-width: 180px; }
-
-    .comp-table { min-width: 1000px; }
-    .comp-table th.col-cat {
-      white-space: normal !important;
-      word-wrap: break-word;
-      line-height: 1.25;
-      min-height: 60px;
-      height: 60px;
-      font-size: 0.8rem;
-    }
-
-    .cat-card-success {
-      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-      border: 1px solid #86efac !important;
-      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .cat-card-danger {
-      background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-      border: 1px solid #fca5a5 !important;
-      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.08);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-
-    .card-rank-badge {
-      font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 12px;
-      background: #ffffff; color: #475569; border: 1px solid #cbd5e1;
-      display: inline-flex; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    .card-rank-badge.top-1 { background: #fef08a; color: #854d0e; border-color: #fde047; }
-    .card-rank-badge.top-2 { background: #e2e8f0; color: #334155; border-color: #cbd5e1; }
-    .card-rank-badge.top-3 { background: #ffedd5; color: #9a3412; border-color: #fed7aa; }
-
-    .val-below-avg { color: #ef4444 !important; background-color: #fef2f2; font-weight: 700; border-radius: 6px; }
-    .table-highlight-row { background-color: #fef3c7 !important; }
-
-    .rank-badge { 
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 28px; height: 28px; border-radius: 50%; 
-      background-color: #f1f5f9; color: #475569; font-weight: 700; font-size: 0.8rem; 
-    }
-    tr:nth-child(1) .rank-badge { background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%); color: #ffffff; box-shadow: 0 2px 8px rgba(245,158,11,0.4); }
-    tr:nth-child(2) .rank-badge { background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%); color: #ffffff; }
-    tr:nth-child(3) .rank-badge { background: linear-gradient(135deg, #f97316 0%, #c2410c 100%); color: #ffffff; }
-
-    .ratio-badge { display: inline-block; padding: 5px 10px; border-radius: 20px; font-weight: 600; font-size: 0.8rem; background-color: #e0f2fe; color: #0284c7; }
-    .loading-spinner { display: flex; justify-content: center; align-items: center; min-height: 300px; flex-direction: column; }
-
-    @media (max-width: 768px) {
-      .sidebar { display: none !important; }
-      .mobile-bottom-nav { display: flex; }
-      .main-content { 
-        margin-left: 0 !important; 
-        width: 100% !important; 
-        padding: 12px !important; 
-        padding-bottom: 80px !important;
-      }
-      .top-bar { 
-        padding: 12px 16px; 
-        flex-direction: row; 
-        justify-content: space-between; 
-        align-items: center; 
-        gap: 8px;
-        border-radius: 12px;
-      }
-      .top-bar h5 { font-size: 1rem; }
-      .top-bar button { font-size: 0.78rem; padding: 6px 12px; }
-      .d-flex.justify-content-between.align-items-center.mb-3.flex-wrap {
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 10px !important;
-      }
-      .nav-pills-store { width: 100%; justify-content: center; overflow-x: auto; }
-      .input-group.input-group-sm.shadow-sm { max-width: 100% !important; }
-      .row.g-3.mb-3 > div { width: 50% !important; }
-      .kpi-card { padding: 12px; margin-bottom: 8px; border-radius: 12px; }
-      .kpi-title { font-size: 0.65rem; }
-      .kpi-value { font-size: 1.15rem; }
-
-      .custom-table th:nth-child(1), .custom-table td:nth-child(1) {
-        position: sticky; left: 0; z-index: 3; background-color: #f8fafc;
-      }
-      .custom-table th:nth-child(2), .custom-table td:nth-child(2) {
-        position: sticky; left: 45px; z-index: 3; background-color: #ffffff;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.03);
-      }
-      .custom-table tbody tr:hover td:nth-child(2) { background-color: #f8fafc; }
-
-      .table-container { padding: 12px; border-radius: 12px; }
-      .custom-table th, .custom-table td { padding: 10px 8px; font-size: 0.78rem; }
-    }
   </style>
 </head>
 <body>
@@ -317,6 +267,7 @@
         <li class="menu-item"><a href="javascript:void(0)" class="menu-link" onclick="switchSidebarTab('nganh-hang', this)"><i class="fa-solid fa-trophy"></i><span>Ngành Hàng Thi Đua</span></a></li>
         <li class="menu-item"><a href="javascript:void(0)" class="menu-link" onclick="switchSidebarTab('hieu-qua', this)"><i class="fa-solid fa-chart-line"></i><span>Hiệu Quả</span></a></li>
         <li class="menu-item"><a href="javascript:void(0)" class="menu-link" onclick="switchSidebarTab('tra-cham', this)"><i class="fa-solid fa-credit-card"></i><span>Trả Chậm</span></a></li>
+        <li class="menu-item"><a href="javascript:void(0)" class="menu-link" onclick="switchSidebarTab('nhan-vien', this)"><i class="fa-solid fa-user-lock"></i><span>Nhân Viên</span></a></li>
       </ul>
     </aside>
 
@@ -333,6 +284,9 @@
       </a>
       <a href="javascript:void(0)" class="nav-item" onclick="switchSidebarTab('tra-cham', this)">
         <i class="fa-solid fa-credit-card"></i><span>Trả Chậm</span>
+      </a>
+      <a href="javascript:void(0)" class="nav-item" onclick="switchSidebarTab('nhan-vien', this)">
+        <i class="fa-solid fa-user-lock"></i><span>Nhân Viên</span>
       </a>
     </nav>
 
@@ -361,6 +315,7 @@
           </div>
         </div>
 
+        <!-- VÙNG TÌM KIẾM NHÂN VIÊN -->
         <div id="staff-search-results-container" class="mb-3 d-none">
           <div class="card border-0 shadow-sm p-3" style="border-radius: var(--card-radius); background: #f8fafc; border: 1px solid var(--border-color);">
             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -377,6 +332,7 @@
         </div>
 
         <div class="tab-content d-none" id="mainTabContent">
+          <!-- TAB CHUNG -->
           <div class="tab-pane fade show active" id="tab-common" role="tabpanel">
             <div class="row g-3 mb-3">
               <div class="col-md-3 col-6"><div class="kpi-card"><div class="kpi-title">Tổng Doanh Thu ST</div><div class="kpi-value text-indigo" style="color:var(--primary-color);" id="common-dtst">0</div></div></div>
@@ -406,6 +362,7 @@
             </div>
           </div>
 
+          <!-- TAB ST1 -->
           <div class="tab-pane fade" id="tab-st1" role="tabpanel">
             <div class="row g-3 mb-3">
               <div class="col-md-3 col-6"><div class="kpi-card"><div class="kpi-title">Tổng Doanh Thu ST</div><div class="kpi-value text-indigo" style="color:var(--primary-color);" id="st1-dtst">0</div></div></div>
@@ -432,6 +389,7 @@
             </div>
           </div>
 
+          <!-- TAB ST2 -->
           <div class="tab-pane fade" id="tab-st2" role="tabpanel">
             <div class="row g-3 mb-3">
               <div class="col-md-3 col-6"><div class="kpi-card"><div class="kpi-title">Tổng Doanh Thu ST</div><div class="kpi-value text-indigo" style="color:var(--primary-color);" id="st2-dtst">0</div></div></div>
@@ -474,6 +432,7 @@
           </div>
         </div>
 
+        <!-- VÙNG KẾT QUẢ TÌM KIẾM CÓ XẾP HẠNG Ở GIỮA CARD -->
         <div id="comp-staff-search-results-container" class="mb-3 d-none">
           <div class="card border-0 shadow-sm p-3" style="border-radius: var(--card-radius); background: #ffffff; border: 1px solid var(--border-color);">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -502,45 +461,29 @@
 
       <!-- PAGE 3: HIỆU QUẢ -->
       <div id="page-hieu-qua" class="page-section d-none">
-        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-          <ul class="nav nav-pills nav-pills-store" id="hqStoreTab" role="tablist">
-            <li class="nav-item"><button class="nav-link active" id="hq-st1-tab" onclick="setHqStore('st1', this)" type="button"><i class="fa-solid fa-store me-1"></i>Siêu Thị 1</button></li>
-            <li class="nav-item"><button class="nav-link" id="hq-st2-tab" onclick="setHqStore('st2', this)" type="button"><i class="fa-solid fa-store me-1"></i>Siêu Thị 2</button></li>
-          </ul>
+        <style>
+          .hq-table td:nth-child(n+2), .hq-table th:nth-child(n+2) { text-align: right; }
+          .hq-table th:nth-child(1), .hq-table td:nth-child(1) { text-align: left; min-width: 150px; }
+          .custom-table.hq-table th:nth-child(2), .custom-table.hq-table td:nth-child(2) { position: static; box-shadow: none; left: auto; }
+          .hq-table tr.hq-total td { font-weight: 700; background: #f8fafc; border-top: 2px solid #e2e8f0; }
+          .hq-table tr.hq-zero td { color: #94a3b8; }
+        </style>
+        <div class="btn-group mb-3" id="hq-tabs" role="group">
+          <button type="button" class="btn btn-outline-primary active" data-tab="sp" onclick="setHieuQuaTab('sp')">Sản phẩm chính</button>
+          <button type="button" class="btn btn-outline-primary" data-tab="dv" onclick="setHieuQuaTab('dv')">Khai thác dịch vụ</button>
         </div>
-
-        <!-- BỘ LỌC TÊN NHÂN VIÊN & THANH TRƯỢT NGÀY -->
-        <div class="filter-box">
-          <div class="row g-3 align-items-center">
-            <div class="col-md-5">
-              <label class="form-label fw-bold text-secondary small mb-1"><i class="fa-solid fa-user me-1 text-primary"></i>Lọc Tên Nhân Viên:</label>
-              <select id="hq-staff-select" class="form-select form-select-sm" onchange="applyHieuQuaFilter()">
-                <option value="ALL">-- Tất cả Nhân Viên --</option>
-              </select>
-            </div>
-            <div class="col-md-7">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <label class="form-label fw-bold text-secondary small mb-0"><i class="fa-solid fa-calendar-day me-1 text-primary"></i>Lọc Theo Ngày (Thanh Trượt):</label>
-                <span class="badge bg-indigo text-white px-2 py-1" id="hq-date-display" style="background-color: var(--primary-color);">Tất cả ngày</span>
-              </div>
-              <input type="range" class="form-range" id="hq-date-slider" min="0" max="0" value="0" oninput="onDateSliderChange(this.value)">
-            </div>
+        <div class="table-container mb-3">
+          <div class="row g-2 align-items-end">
+            <div class="col-6 col-md-2"><label class="form-label small text-muted mb-1">Từ ngày</label><input type="date" id="hq-from" class="form-control form-control-sm" onchange="renderHieuQua()"></div>
+            <div class="col-6 col-md-2"><label class="form-label small text-muted mb-1">Đến ngày</label><input type="date" id="hq-to" class="form-control form-control-sm" onchange="renderHieuQua()"></div>
+            <div class="col-6 col-md-3" id="hq-sp-col"><label class="form-label small text-muted mb-1">Sản phẩm chính</label><select id="hq-sp" class="form-select form-select-sm" onchange="renderHieuQua()"></select></div>
+            <div class="col-6 col-md-3"><label class="form-label small text-muted mb-1">Tên nhân viên</label><input type="search" id="hq-search" class="form-control form-control-sm" placeholder="Gõ tên để xem theo nhân viên" oninput="renderHieuQua()"></div>
+            <div class="col-12 col-md-2"><button type="button" class="btn btn-sm btn-outline-secondary w-100" onclick="resetHieuQuaFilter()">Đặt lại</button></div>
           </div>
+          <div class="btn-group btn-group-sm mt-2" id="hq-store-group" role="group"></div>
+          <div class="small text-muted mt-2" id="hq-note"></div>
         </div>
-
-        <div class="row g-3 mb-3">
-          <div class="col-md-4 col-6"><div class="kpi-card"><div class="kpi-title">Tổng Doanh Thu SP Chính</div><div class="kpi-value text-success" id="hq-total-rev">0 đ</div></div></div>
-          <div class="col-md-4 col-6"><div class="kpi-card"><div class="kpi-title">Tổng Số Lượng Bán</div><div class="kpi-value text-indigo" style="color:var(--primary-color);" id="hq-total-qty">0</div></div></div>
-          <div class="col-md-4 col-12"><div class="kpi-card"><div class="kpi-title">SP Bán Chạy Nhất</div><div class="kpi-value text-warning fs-5 text-truncate" id="hq-top-product">-</div></div></div>
-        </div>
-
-        <div class="table-container">
-          <h6 class="fw-bold mb-3 text-success"><i class="fa-solid fa-chart-line me-2"></i>Thống Kê Hiệu Quả Sản Phẩm Chính Theo Nhân Viên</h6>
-          <table class="table custom-table" id="hq-table">
-            <thead id="hq-thead"></thead>
-            <tbody id="hq-tbody"></tbody>
-          </table>
-        </div>
+        <div id="hq-content"></div>
       </div>
 
       <!-- PAGE 4: TRẢ CHẬM -->
@@ -554,6 +497,61 @@
             <thead id="tracham-thead"></thead>
             <tbody id="tracham-tbody"></tbody>
           </table>
+        </div>
+      </div>
+
+      <!-- PAGE 5: NHÂN VIÊN (đăng nhập) -->
+      <div id="page-nhan-vien" class="page-section d-none">
+        <style>
+          .nv-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.55); z-index: 2000; display: none; align-items: flex-start; justify-content: center; padding: 16px; overflow-y: auto; }
+          .nv-modal { background: #fff; border-radius: 14px; width: 100%; max-width: 760px; margin: 24px auto; padding: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+          .nv-msg { font-size: 0.85rem; min-height: 1.2rem; }
+        </style>
+        <div id="nv-login-box" class="table-container mx-auto" style="max-width:420px;">
+          <h6 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-user-lock me-2" style="color:var(--primary-color);"></i>Đăng nhập nhân viên</h6>
+          <div class="mb-2"><label class="form-label small text-muted mb-1">User (mã nhân viên)</label><input type="text" id="nv-user" class="form-control" autocomplete="username" onkeydown="if(event.key==='Enter')nvLogin()"></div>
+          <div class="mb-2"><label class="form-label small text-muted mb-1">Mật khẩu</label><input type="password" id="nv-pass" class="form-control" autocomplete="current-password" onkeydown="if(event.key==='Enter')nvLogin()"></div>
+          <div class="nv-msg text-danger mb-2" id="nv-login-msg"></div>
+          <button type="button" class="btn btn-primary w-100 fw-semibold" id="nv-login-btn" onclick="nvLogin()">Đăng nhập</button>
+        </div>
+        <div id="nv-main" style="display:none;">
+          <div class="table-container mb-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div class="fw-semibold text-dark" id="nv-hello"></div>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-sm btn-outline-primary" id="nv-admin-btn" onclick="nvOpenAdmin()"><i class="fa-solid fa-users-gear me-1"></i>Quản lý tài khoản</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" onclick="nvLogout()"><i class="fa-solid fa-right-from-bracket me-1"></i>Đăng xuất</button>
+            </div>
+          </div>
+          <div id="nv-admin-note" class="table-container text-center text-muted py-4">Bạn đang đăng nhập bằng tài khoản Admin. Bấm "Quản lý tài khoản" để tạo hoặc chỉnh sửa tài khoản nhân viên.</div>
+          <div id="nv-staff-area">
+            <div class="btn-group mb-3" role="group" id="nv-subtabs">
+              <button type="button" class="btn btn-outline-primary active" data-sub="dt" onclick="nvSetSub('dt')">Doanh Thu</button>
+              <button type="button" class="btn btn-outline-primary" data-sub="hq" onclick="nvSetSub('hq')">Hiệu quả ngành hàng</button>
+              <button type="button" class="btn btn-outline-primary" data-sub="td" onclick="nvSetSub('td')">Thi đua</button>
+            </div>
+            <div id="nv-sub-content"></div>
+          </div>
+        </div>
+        <div class="nv-overlay" id="nv-admin-overlay">
+          <div class="nv-modal">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="fw-bold m-0 text-dark"><i class="fa-solid fa-users-gear me-2" style="color:var(--primary-color);"></i>Quản lý tài khoản nhân viên</h6>
+              <button type="button" class="btn btn-sm btn-outline-secondary" onclick="nvCloseAdmin()">Đóng</button>
+            </div>
+            <div class="row g-2 align-items-end mb-1">
+              <div class="col-12 col-md-3"><label class="form-label small text-muted mb-1">User (mã NV)</label><input type="text" id="nv-new-user" class="form-control form-control-sm" autocomplete="off"></div>
+              <div class="col-12 col-md-3"><label class="form-label small text-muted mb-1">Mật khẩu</label><input type="text" id="nv-new-pass" class="form-control form-control-sm" autocomplete="off"></div>
+              <div class="col-12 col-md-4"><label class="form-label small text-muted mb-1">Name (tên nhân viên)</label><input type="text" id="nv-new-name" class="form-control form-control-sm" autocomplete="off"></div>
+              <div class="col-12 col-md-2"><button type="button" class="btn btn-sm btn-primary w-100" id="nv-create-btn" onclick="nvAdminCreate()">Tạo</button></div>
+            </div>
+            <div class="nv-msg mb-2" id="nv-admin-msg"></div>
+            <div style="overflow-x:auto;">
+              <table class="table custom-table">
+                <thead><tr><th>User</th><th>Mật khẩu</th><th>Name</th><th></th></tr></thead>
+                <tbody id="nv-admin-tbody"></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -571,7 +569,6 @@
     let traChamSortState = { colIdx: null, asc: false };
     let currentActiveStoreTab = 'common';
     let currentCompStoreTab = 'st1';
-    let currentHqStore = 'st1';
     let currentSearchQuery = '';
     let currentCompSearchQuery = '';
 
@@ -589,6 +586,7 @@
     document.addEventListener("DOMContentLoaded", function() {
       fetchDataWithTimeout();
 
+      // HÀM CLICK LÀM MỜ HÀNG KHÁC & NỔI BẬT HÀNG ĐƯỢC CHỌN
       document.addEventListener("click", function(event) {
         var tr = event.target.closest("tr");
         if (!tr) return;
@@ -637,16 +635,597 @@
       });
     });
 
+    // ===== TAB HIỆU QUẢ (vùng dữ liệu chi tiết từ cột AR) - thống kê theo Sản phẩm chính và Hãng smartphone =====
+    const HQ_VIEWS = [
+      { key: 'Tivi', label: 'Tivi', sp: 'Tivi', level: 'main' },
+      { key: 'Tủ Lạnh', label: 'Tủ Lạnh', sp: 'Tủ Lạnh', level: 'main' },
+      { key: 'Máy Lạnh', label: 'Máy Lạnh', sp: 'Máy Lạnh', level: 'main' },
+      { key: 'Máy Giặt', label: 'Máy Giặt', sp: 'Máy Giặt', level: 'main' },
+      { key: 'Smartphone', label: 'Smartphone (tổng)', sp: 'Smartphone', level: 'main' },
+      { key: 'SP-Apple', label: 'Smartphone › Apple', sp: 'Smartphone', brands: ['Apple'], level: 'sub' },
+      { key: 'SP-Khac', label: 'Smartphone › Hãng khác (ngoài Apple)', sp: 'Smartphone', notBrands: ['Apple'], level: 'sub' },
+      { key: 'SP-Oppo', label: 'Smartphone › Hãng khác › Oppo', sp: 'Smartphone', brands: ['Oppo'], level: 'sub' },
+      { key: 'SP-Xiaomi', label: 'Smartphone › Hãng khác › Xiaomi', sp: 'Smartphone', brands: ['Xiaomi'], level: 'sub' },
+      { key: 'SP-Vivo', label: 'Smartphone › Hãng khác › Vivo', sp: 'Smartphone', brands: ['Vivo'], level: 'sub' },
+      { key: 'SP-Realme', label: 'Smartphone › Hãng khác › Realme', sp: 'Smartphone', brands: ['Realme'], level: 'sub' },
+      { key: 'Máy Lọc Nước', label: 'Máy Lọc Nước', sp: 'Máy Lọc Nước', level: 'main' }
+    ];
+    let hqSort = { col: 'rev', asc: false };
+    let hqStore = 'all';
+    let hqInited = false;
+    let hqTab = 'sp';
+    let hqDvSort = null;
+    const HQ_DV = [
+      { key: 'ICT', label: 'ICT' },
+      { key: 'CE', label: 'CE' },
+      { key: 'MLN', label: 'MLN' },
+      { key: 'BHRV', label: 'BHRV' },
+      { key: 'VSML', label: 'VSML' }
+    ];
+    const hqCols = [
+      { key: 'qty', label: 'SL tổng' },
+      { key: 'rev', label: 'DT tổng (tr)' },
+      { key: 'price', label: 'Đơn giá tổng (tr)' },
+      { key: 'tgQty', label: 'SL trả góp' },
+      { key: 'tgRev', label: 'DT trả góp (tr)' },
+      { key: 'tgPrice', label: 'Đơn giá trả góp (tr)' }
+    ];
+
+    function hqEsc(t) { return String(t).replace(/[&<>"']/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function hqNorm(t) { return String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase().trim(); }
+    function hqTr(v, dec) { return (v / 1e6).toLocaleString('vi-VN', { maximumFractionDigits: dec === undefined ? 1 : dec }); }
+    function hqDateVN(iso) { var p = iso.split('-'); return p[2] + '/' + p[1] + '/' + p[0]; }
+    function hqNewAcc(name) { return { name: name, qty: 0, rev: 0, tgQty: 0, tgRev: 0, price: 0, tgPrice: 0 }; }
+    // r = [ngày, ST, tên NV, sản phẩm chính, hãng, trả góp, số lượng, doanh thu]
+    function hqAdd(acc, r) { acc.qty += r[6]; acc.rev += r[7]; if (r[5] === 1) { acc.tgQty += r[6]; acc.tgRev += r[7]; } }
+    function hqFinish(acc) { acc.price = acc.qty > 0 ? acc.rev / acc.qty : 0; acc.tgPrice = acc.tgQty > 0 ? acc.tgRev / acc.tgQty : 0; return acc; }
+    function hqMatch(v, r) {
+      if (r[3] !== v.sp) return false;
+      if (v.brands && v.brands.indexOf(r[4]) === -1) return false;
+      if (v.notBrands && v.notBrands.indexOf(r[4]) !== -1) return false;
+      return true;
+    }
+
+    function hqRowHtml(m, cls) {
+      return '<tr class="' + (cls || (m.qty === 0 ? 'hq-zero' : '')) + '"><td style="font-weight:600;">' + hqEsc(m.name) + '</td>' +
+        '<td>' + m.qty.toLocaleString('vi-VN') + '</td>' +
+        '<td>' + hqTr(m.rev) + '</td>' +
+        '<td>' + (m.qty > 0 ? hqTr(m.price, 2) : '—') + '</td>' +
+        '<td>' + m.tgQty.toLocaleString('vi-VN') + '</td>' +
+        '<td>' + hqTr(m.tgRev) + '</td>' +
+        '<td>' + (m.tgQty > 0 ? hqTr(m.tgPrice, 2) : '—') + '</td></tr>';
+    }
+
+    function hqTableHtml(title, firstColLabel, list, sortable, totalList) {
+      var head = '<tr><th>' + firstColLabel + '</th>' + hqCols.map(function(c) {
+        var icon = hqSort.col === c.key ? (hqSort.asc ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort';
+        return '<th' + (sortable ? ' onclick="sortHieuQua(\'' + c.key + '\')"' : '') + '>' + c.label + (sortable ? ' <i class="fa-solid ' + icon + ' sort-icon"></i>' : '') + '</th>';
+      }).join('') + '</tr>';
+      var total = hqNewAcc('Tổng');
+      (totalList || list).forEach(function(m) { total.qty += m.qty; total.rev += m.rev; total.tgQty += m.tgQty; total.tgRev += m.tgRev; });
+      hqFinish(total);
+      return '<div class="table-container"><h6 class="fw-bold mb-3 text-dark">' + title + '</h6>' +
+        '<table class="table custom-table hq-table"><thead>' + head + '</thead><tbody>' +
+        list.map(function(m) { return hqRowHtml(m); }).join('') + hqRowHtml(total, 'hq-total') +
+        '</tbody></table></div>';
+    }
+
+    function initHieuQua(d) {
+      var dates = d.rows.map(function(r) { return r[0]; }).sort();
+      if (dates.length) {
+        document.getElementById('hq-from').value = dates[0];
+        document.getElementById('hq-to').value = dates[dates.length - 1];
+      }
+      document.getElementById('hq-sp').innerHTML = '<option value="all">Tất cả sản phẩm</option>' + HQ_VIEWS.map(function(v) { return '<option value="' + hqEsc(v.key) + '">' + hqEsc(v.label) + '</option>'; }).join('');
+      var sts = Array.from(new Set(d.staff.reduce(function(a, s) { return a.concat(s[1]); }, []))).sort();
+      var btns = [['all', 'Tất cả']].concat(sts.map(function(s) { return [s, 'ST ' + s]; }));
+      document.getElementById('hq-store-group').innerHTML = btns.map(function(b) {
+        return '<button type="button" class="btn btn-outline-primary" data-st="' + hqEsc(b[0]) + '" onclick="setHieuQuaStore(\'' + hqEsc(b[0]) + '\')">' + hqEsc(b[1]) + '</button>';
+      }).join('');
+      hqInited = true;
+    }
+
+    function hqNameMatch(name, query) {
+      var tokens = query.split(/\s+/);
+      var words = hqNorm(name).split(/\s+/);
+      return tokens.every(function(t) { return words.some(function(w) { return w.indexOf(t) === 0; }); });
+    }
+    function setHieuQuaTab(t) { hqTab = t; renderHieuQua(); }
+    function sortHieuQuaDv(key) {
+      if (hqDvSort && hqDvSort.key === key) hqDvSort.asc = !hqDvSort.asc; else hqDvSort = { key: key, asc: false };
+      renderHieuQua();
+    }
+    // Mẫu số: ICT = Smartphone + Tablet + Laptop; CE = Tivi + Tủ lạnh + Máy lạnh + Máy giặt + Máy lọc nước; MLN = Máy lọc nước; BHRV = Smartphone; VSML = Máy lạnh
+    function hqDvDen(a, key) {
+      var s = a.sp;
+      var g = function(k) { return s[k] || 0; };
+      if (key === 'ICT') return g('Smartphone') + (a.dv.LAPTOP || 0) + (a.dv.TABLET || 0);
+      if (key === 'CE') return g('Tivi') + g('Tủ Lạnh') + g('Máy Lạnh') + g('Máy Giặt') + g('Máy Lọc Nước');
+      if (key === 'MLN') return g('Máy Lọc Nước');
+      if (key === 'BHRV') return g('Smartphone');
+      if (key === 'VSML') return g('Máy Lạnh');
+      return 0;
+    }
+    function hqDvMetrics(a) {
+      var m = {};
+      HQ_DV.forEach(function(g) {
+        var n = a.dv[g.key] || 0, dn = hqDvDen(a, g.key);
+        m[g.key] = { n: n, d: dn, p: dn > 0 ? n / dn * 100 : null };
+      });
+      return m;
+    }
+    function hqDvHtml(d, rows, from, to) {
+      if (d.dvError) return '<div class="table-container text-center text-danger py-4">' + hqEsc(d.dvError) + '</div>';
+      if (!d.dvRows) return '<div class="table-container text-center text-muted py-4">Chưa có dữ liệu khai thác dịch vụ. Hãy cập nhật Apps Script và Deploy phiên bản mới.</div>';
+      var query = hqNorm(document.getElementById('hq-search').value);
+      var dvRows = d.dvRows.filter(function(r) {
+        if (from && r[0] < from) return false;
+        if (to && r[0] > to) return false;
+        if (hqStore !== 'all' && r[1] !== hqStore) return false;
+        return true;
+      });
+      var roster = d.staff.filter(function(s) {
+        return (hqStore === 'all' || s[1].indexOf(hqStore) !== -1) && (!query || hqNameMatch(s[0], query));
+      });
+      var acc = {};
+      roster.forEach(function(s) { acc[s[0]] = { name: s[0], sp: {}, dv: {} }; });
+      rows.forEach(function(r) { var a = acc[r[2]]; if (a) a.sp[r[3]] = (a.sp[r[3]] || 0) + r[6]; });
+      dvRows.forEach(function(r) { var a = acc[r[2]]; if (a) a.dv[r[3]] = (a.dv[r[3]] || 0) + r[4]; });
+      var list = Object.keys(acc).map(function(k) { var a = acc[k]; a.m = hqDvMetrics(a); return a; });
+      var tot = { name: 'Tổng', sp: {}, dv: {} };
+      list.forEach(function(a) {
+        Object.keys(a.sp).forEach(function(k) { tot.sp[k] = (tot.sp[k] || 0) + a.sp[k]; });
+        Object.keys(a.dv).forEach(function(k) { tot.dv[k] = (tot.dv[k] || 0) + a.dv[k]; });
+      });
+      tot.m = hqDvMetrics(tot);
+      var sumN = function(a) { return HQ_DV.reduce(function(s, g) { return s + a.m[g.key].n; }, 0); };
+      list.sort(function(a, b) {
+        if (hqDvSort) {
+          var pa = a.m[hqDvSort.key].p, pb = b.m[hqDvSort.key].p;
+          if ((pa === null) !== (pb === null)) return pa === null ? 1 : -1;
+          if (pa !== null && pa !== pb) return hqDvSort.asc ? pa - pb : pb - pa;
+        } else if (sumN(a) !== sumN(b)) return sumN(b) - sumN(a);
+        return a.name.localeCompare(b.name, 'vi');
+      });
+      var fmt = function(v) { return v.toLocaleString('vi-VN'); };
+      var cellsOf = function(a) {
+        return HQ_DV.map(function(g) {
+          var x = a.m[g.key];
+          return '<td>' + fmt(x.n) + '</td><td>' + fmt(x.d) + '</td><td style="font-weight:700;">' + (x.p === null ? '—' : x.p.toFixed(1) + '%') + '</td>';
+        }).join('');
+      };
+      var th2 = 'style="text-align:right;min-width:0;position:static;box-shadow:none;left:auto;"';
+      var head = '<tr><th rowspan="2">Nhân viên</th>' + HQ_DV.map(function(g) {
+        var icon = hqDvSort && hqDvSort.key === g.key ? (hqDvSort.asc ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort';
+        return '<th colspan="3" onclick="sortHieuQuaDv(\'' + g.key + '\')" style="text-align:center;">' + g.label + ' <i class="fa-solid ' + icon + ' sort-icon"></i></th>';
+      }).join('') + '</tr><tr>' + HQ_DV.map(function() {
+        return '<th ' + th2 + '>SL DV</th><th ' + th2 + '>SL SP</th><th ' + th2 + '>% KT</th>';
+      }).join('') + '</tr>';
+      var body = list.map(function(a) {
+        return '<tr class="' + (sumN(a) === 0 ? 'hq-zero' : '') + '"><td style="font-weight:600;">' + hqEsc(a.name) + '</td>' + cellsOf(a) + '</tr>';
+      }).join('') + '<tr class="hq-total"><td>Tổng</td>' + cellsOf(tot) + '</tr>';
+      return '<div class="table-container"><h6 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-shield-halved me-2" style="color:var(--primary-color);"></i>Khai thác dịch vụ theo nhân viên</h6>' +
+        '<div style="overflow-x:auto;"><table class="table custom-table hq-table"><thead>' + head + '</thead><tbody>' + body + '</tbody></table></div>' +
+        '<div class="small text-muted mt-2">SL DV = số lượng dịch vụ; SL SP = số lượng sản phẩm mẫu số; % KT = SL DV / SL SP. Bấm tên nhóm để xếp theo % khai thác. ' +
+        'Mẫu số: ICT = Smartphone + Tablet + Laptop; CE = Tivi + Tủ lạnh + Máy lạnh + Máy giặt + Máy lọc nước; MLN = Máy lọc nước; BHRV = Smartphone; VSML = Máy lạnh. ' +
+        'Dữ liệu không có mã đơn nên % có thể vượt 100%.</div></div>';
+    }
+
+    function setHieuQuaStore(s) { hqStore = s; renderHieuQua(); }
+    function resetHieuQuaFilter() { hqInited = false; hqStore = 'all'; document.getElementById('hq-search').value = ''; renderHieuQua(); }
+    function sortHieuQua(col) {
+      if (hqSort.col === col) hqSort.asc = !hqSort.asc; else { hqSort.col = col; hqSort.asc = false; }
+      renderHieuQua();
+    }
+
+    function renderHieuQua() {
+      var content = document.getElementById('hq-content');
+      var d = globalData && globalData.hieuQua;
+      if (d && d.error) {
+        content.innerHTML = '<div class="table-container text-center text-danger py-4">' + hqEsc(d.error) + '</div>';
+        return;
+      }
+      if (!d || !d.rows || !d.staff) {
+        content.innerHTML = '<div class="table-container text-center text-muted py-4">Chưa có dữ liệu chi tiết bán hàng. Hãy cập nhật Apps Script và Deploy phiên bản mới.</div>';
+        return;
+      }
+      if (!hqInited) initHieuQua(d);
+
+      var from = document.getElementById('hq-from').value;
+      var to = document.getElementById('hq-to').value;
+      var spSel = document.getElementById('hq-sp').value;
+      var query = hqNorm(document.getElementById('hq-search').value);
+      var views = spSel === 'all' ? HQ_VIEWS : HQ_VIEWS.filter(function(v) { return v.key === spSel; });
+
+      document.querySelectorAll('#hq-store-group button').forEach(function(b) {
+        b.classList.toggle('active', b.getAttribute('data-st') === hqStore);
+      });
+
+      var rows = d.rows.filter(function(r) {
+        if (from && r[0] < from) return false;
+        if (to && r[0] > to) return false;
+        if (hqStore !== 'all' && r[1] !== hqStore) return false;
+        return true;
+      });
+
+      document.getElementById('hq-note').textContent = 'Kỳ xem: ' + (from ? hqDateVN(from) : '...') + ' - ' + (to ? hqDateVN(to) : '...') +
+        ' | ' + (hqStore === 'all' ? 'Tất cả ST' : 'ST ' + hqStore) + ' | Đơn giá = doanh thu / số lượng | Trả góp = hình thức xuất có chữ "trả góp" | Hãng khác = mọi hãng smartphone ngoài Apple (kể cả hãng ngoài Oppo, Xiaomi, Vivo, Realme)';
+
+      document.getElementById('hq-sp-col').style.display = hqTab === 'dv' ? 'none' : '';
+      document.querySelectorAll('#hq-tabs button').forEach(function(b) {
+        b.classList.toggle('active', b.getAttribute('data-tab') === hqTab);
+      });
+      if (hqTab === 'dv') {
+        document.getElementById('hq-note').textContent = 'Kỳ xem: ' + (from ? hqDateVN(from) : '...') + ' - ' + (to ? hqDateVN(to) : '...') +
+          ' | ' + (hqStore === 'all' ? 'Tất cả ST' : 'ST ' + hqStore) + ' | Dịch vụ nhận diện theo chữ CE, ICT, MLN, BHRV, VSML trong cột Dịch vụ (các dòng bảo hiểm khác không tính)';
+        content.innerHTML = hqDvHtml(d, rows, from, to);
+        return;
+      }
+
+      var html = '';
+      if (query) {
+        // BẢNG THEO NHÂN VIÊN: cột đầu là sản phẩm chính (Smartphone chia thêm theo hãng)
+        var tokens = query.split(/\s+/);
+        var matched = d.staff.filter(function(s) {
+          var words = hqNorm(s[0]).split(/\s+/);
+          return tokens.every(function(t) { return words.some(function(w) { return w.indexOf(t) === 0; }); });
+        });
+        if (!matched.length) {
+          html = '<div class="table-container text-center text-muted py-4">Không tìm thấy nhân viên phù hợp.</div>';
+        } else {
+          matched.slice(0, 5).forEach(function(s) {
+            var accs = {};
+            views.forEach(function(v) { accs[v.key] = hqNewAcc(v.label); });
+            rows.forEach(function(r) {
+              if (r[2] !== s[0]) return;
+              views.forEach(function(v) { if (hqMatch(v, r)) hqAdd(accs[v.key], r); });
+            });
+            var list = views.map(function(v) { return hqFinish(accs[v.key]); });
+            // Dòng Tổng chỉ cộng các nhóm chính (không cộng lặp các dòng hãng); nếu chỉ chọn 1 nhóm thì tổng = chính nhóm đó
+            var totalList = views.length === 1 ? list : list.filter(function(m, i) { return views[i].level === 'main'; });
+            html += hqTableHtml('<i class="fa-solid fa-user me-2" style="color:var(--primary-color);"></i>' + hqEsc(s[0]), 'Sản phẩm chính', list, false, totalList);
+          });
+          if (matched.length > 5) html += '<div class="small text-muted mb-3">Có ' + matched.length + ' nhân viên khớp, đang hiển thị 5 người đầu. Gõ rõ hơn để thu hẹp.</div>';
+        }
+      } else {
+        // BẢNG THEO SẢN PHẨM: cột đầu là nhân viên (người chưa bán vẫn hiện, giá trị 0, xếp cuối)
+        var roster = d.staff.filter(function(s) { return hqStore === 'all' || s[1].indexOf(hqStore) !== -1; });
+        views.forEach(function(v) {
+          var accs = {};
+          roster.forEach(function(s) { accs[s[0]] = hqNewAcc(s[0]); });
+          rows.forEach(function(r) { if (hqMatch(v, r) && accs[r[2]]) hqAdd(accs[r[2]], r); });
+          var list = Object.keys(accs).map(function(k) { return hqFinish(accs[k]); });
+          list.sort(function(a, b) {
+            if ((a.qty === 0) !== (b.qty === 0)) return a.qty === 0 ? 1 : -1;
+            var c = a[hqSort.col] - b[hqSort.col];
+            if (c === 0) return a.name.localeCompare(b.name, 'vi');
+            return hqSort.asc ? c : -c;
+          });
+          html += hqTableHtml('<i class="fa-solid fa-box me-2" style="color:var(--primary-color);"></i>' + hqEsc(v.label), 'Nhân viên', list, true);
+        });
+      }
+      content.innerHTML = html;
+    }
+
+    // ===== TAB NHÂN VIÊN - BƯỚC 1: ĐĂNG NHẬP, ADMIN, QUẢN LÝ TÀI KHOẢN =====
+    const NV_SESSION_KEY = 'nv_session_v1';
+    let nvSession = null;
+    let nvSub = 'dt';
+
+    async function nvApi(action, payload) {
+      const body = JSON.stringify(Object.assign({ action: action }, payload || {}));
+      const res = await fetch(WEB_APP_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return await res.json();
+    }
+    function nvEsc(t) { return String(t).replace(/[&<>"']/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function nvLoadSession() { try { var s = sessionStorage.getItem(NV_SESSION_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
+    function nvSaveSession(s) { try { if (s) sessionStorage.setItem(NV_SESSION_KEY, JSON.stringify(s)); else sessionStorage.removeItem(NV_SESSION_KEY); } catch (e) {} }
+    function nvShow(view) {
+      document.getElementById('nv-login-box').style.display = view === 'login' ? '' : 'none';
+      document.getElementById('nv-main').style.display = view === 'main' ? '' : 'none';
+    }
+    function nvClearSession(msg) {
+      nvSession = null; nvSaveSession(null);
+      nvCloseAdmin();
+      document.getElementById('nv-pass').value = '';
+      document.getElementById('nv-login-msg').textContent = msg || '';
+      nvShow('login');
+    }
+    function nvSetSub(sub) {
+      nvSub = sub;
+      document.querySelectorAll('#nv-subtabs button').forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-sub') === sub); });
+      if (sub === 'dt') { nvLoadRevenue(); return; }
+      if (sub === 'hq') { nvLoadHq(); return; }
+      if (sub === 'td') { nvLoadTd(); return; }
+      var names = { dt: 'Doanh Thu', hq: 'Hiệu quả ngành hàng', td: 'Thi đua' };
+      document.getElementById('nv-sub-content').innerHTML = '<div class="table-container text-center text-muted py-4">Phần "' + names[sub] + '" sẽ được bổ sung ở bước tiếp theo.</div>';
+    }
+    // ---- Phần Doanh Thu của nhân viên (bước 2) ----
+    function nvNum(v, dec) { return v === null || v === undefined ? '—' : Number(v).toLocaleString('vi-VN', { maximumFractionDigits: dec === undefined ? 1 : dec }); }
+    async function nvLoadRevenue() {
+      var box = document.getElementById('nv-sub-content');
+      box.innerHTML = '<div class="table-container text-center text-muted py-4">Đang tải dữ liệu...</div>';
+      var token = nvSession && nvSession.token;
+      try {
+        var r = await nvApi('nv_revenue', { token: token });
+        if (!nvSession || nvSub !== 'dt') return;
+        if (r.expired) { nvClearSession(r.error); return; }
+        if (!r.ok) { box.innerHTML = '<div class="table-container text-center text-danger py-4">' + nvEsc(r.error || 'Không tải được dữ liệu.') + '</div>'; return; }
+        box.innerHTML = nvRevenueHtml(r);
+      } catch (e) {
+        if (nvSession && nvSub === 'dt') box.innerHTML = '<div class="table-container text-center text-danger py-4">Không kết nối được máy chủ. Vui lòng thử lại.</div>';
+      }
+    }
+    function nvRevenueHtml(r) {
+      var c = r.cards;
+      var rate = c.rateQD === null ? '—' : (c.rateQD > 0 ? '+' : '') + nvNum(c.rateQD, 1) + '%';
+      var warnRate = c.rateQD !== null && c.rateQD < 60 ? 'Thấp hơn 60%' : '';
+      var warnTC = c.traChamPct !== null && c.traChamPct < 70 ? 'Thấp hơn 70%' : '';
+      function card(icon, label, val, unit, warn, cls) {
+        return '<div class="col-6 col-md-3"><div class="table-container py-3 h-100"><div class="text-muted small"><i class="fa-solid ' + icon + ' me-1"></i>' + label + '</div>' +
+          '<div class="fs-4 fw-bold ' + (cls || '') + '">' + val + '</div>' +
+          '<div class="small ' + (warn ? 'text-danger' : 'text-muted') + '">' + (warn ? '<i class="fa-solid fa-triangle-exclamation me-1"></i>' + warn : (unit || '&nbsp;')) + '</div></div></div>';
+      }
+      var html = '<div class="d-flex justify-content-between align-items-center mb-2"><div class="fw-semibold text-dark">Kết quả làm việc của ' + nvEsc(r.name) + '</div>' +
+        '<button type="button" class="btn btn-sm btn-outline-secondary" onclick="nvLoadRevenue()"><i class="fa-solid fa-sync me-1"></i>Tải lại</button></div><div class="row g-3">' +
+        card('fa-store', 'Doanh Thu ST', nvNum(c.dtST, 2), 'triệu') +
+        card('fa-arrows-rotate', 'Doanh Thu Quy Đổi', nvNum(c.dtQD, 2), 'triệu', '', 'text-primary') +
+        card('fa-percent', 'Tỷ Lệ Quy Đổi', rate, '', warnRate, c.rateQD !== null && c.rateQD < 0 ? 'text-danger' : 'text-success') +
+        card('fa-credit-card', 'DT Trả Chậm', nvNum(c.dtTraGop, 2), 'triệu') +
+        card('fa-chart-pie', 'Tỷ Lệ Trả Chậm', c.traChamPct === null ? '—' : nvNum(c.traChamPct, 1) + '%', '', warnTC, 'text-info') +
+        card('fa-boxes-stacked', 'Tổng Số Lượng Bán', nvNum(c.totalQty, 0), 'sản phẩm / dịch vụ') +
+        card('fa-tag', 'Đơn Giá Trung Bình', c.avgPrice === null ? '—' : nvNum(c.avgPrice / 1e6, 2), 'triệu / sản phẩm') +
+        '</div>';
+      if (r.warnings && r.warnings.length) {
+        html += '<div class="small text-muted mt-3">' + r.warnings.map(function(w) { return '<div><i class="fa-solid fa-circle-info me-1"></i>' + nvEsc(w) + '</div>'; }).join('') + '</div>';
+      }
+      return html;
+    }
+    // ---- Phần Hiệu quả ngành hàng của nhân viên (bước 3) ----
+    // Dùng lại HQ_VIEWS, hqMatch, hqNewAcc, hqAdd, hqFinish, hqTr, hqCols của tab Hiệu Quả. Dòng dữ liệu: [ngày, '', '', sp, nhóm hãng, trả góp, SL, DT, hãng gốc, tên SP]
+    let nvHq = null, nvHqView = null;
+    async function nvLoadHq() {
+      var box = document.getElementById('nv-sub-content');
+      box.innerHTML = '<div class="table-container text-center text-muted py-4">Đang tải dữ liệu...</div>';
+      try {
+        var r = await nvApi('nv_hieuqua', { token: nvSession && nvSession.token });
+        if (!nvSession || nvSub !== 'hq') return;
+        if (r.expired) { nvClearSession(r.error); return; }
+        if (!r.ok) { box.innerHTML = '<div class="table-container text-center text-danger py-4">' + nvEsc(r.error || 'Không tải được dữ liệu.') + '</div>'; return; }
+        nvHq = { warnings: r.warnings || [], rows: r.rows.map(function(x) { return [x[0], '', '', x[1], x[2], x[5], x[6], x[7], x[3], x[4]]; }) };
+        nvHqView = null;
+        var dates = nvHq.rows.map(function(x) { return x[0]; }).sort();
+        box.innerHTML = '<div class="d-flex justify-content-between align-items-center mb-2"><div class="fw-semibold text-dark">Hiệu quả ngành hàng của ' + nvEsc(r.name) + '</div>' +
+          '<button type="button" class="btn btn-sm btn-outline-secondary" onclick="nvLoadHq()"><i class="fa-solid fa-sync me-1"></i>Tải lại</button></div>' +
+          '<div class="table-container mb-3"><div class="row g-2 align-items-end">' +
+          '<div class="col-6 col-md-3"><label class="form-label small text-muted mb-1">Từ ngày</label><input type="date" id="nv-hq-from" class="form-control form-control-sm" value="' + (dates[0] || '') + '" onchange="nvHqRender()"></div>' +
+          '<div class="col-6 col-md-3"><label class="form-label small text-muted mb-1">Đến ngày</label><input type="date" id="nv-hq-to" class="form-control form-control-sm" value="' + (dates[dates.length - 1] || '') + '" onchange="nvHqRender()"></div>' +
+          '<div class="col-12 col-md-2"><button type="button" class="btn btn-sm btn-outline-secondary w-100" onclick="nvHqResetRange()">Đặt lại</button></div></div>' +
+          '<div class="small text-muted mt-2" id="nv-hq-note"></div>' +
+          nvHq.warnings.map(function(w) { return '<div class="small text-muted"><i class="fa-solid fa-circle-info me-1"></i>' + nvEsc(w) + '</div>'; }).join('') +
+          '</div><div id="nv-hq-body"></div>';
+        nvHqRender();
+      } catch (e) {
+        if (nvSession && nvSub === 'hq') box.innerHTML = '<div class="table-container text-center text-danger py-4">Không kết nối được máy chủ. Vui lòng thử lại.</div>';
+      }
+    }
+    function nvHqResetRange() {
+      var dates = nvHq.rows.map(function(x) { return x[0]; }).sort();
+      document.getElementById('nv-hq-from').value = dates[0] || '';
+      document.getElementById('nv-hq-to').value = dates[dates.length - 1] || '';
+      nvHqView = null; nvHqRender();
+    }
+    function nvHqOpen(i) { nvHqView = HQ_VIEWS[i]; nvHqRender(); }
+    function nvHqBack() { nvHqView = null; nvHqRender(); }
+    function nvHqRender() {
+      var body = document.getElementById('nv-hq-body');
+      if (!body || !nvHq) return;
+      var from = document.getElementById('nv-hq-from').value, to = document.getElementById('nv-hq-to').value;
+      var rows = nvHq.rows.filter(function(x) { return (!from || x[0] >= from) && (!to || x[0] <= to); });
+      document.getElementById('nv-hq-note').textContent = 'Kỳ xem: ' + (from ? hqDateVN(from) : '...') + ' - ' + (to ? hqDateVN(to) : '...') +
+        ' | Đơn giá = doanh thu / số lượng | Bấm tên nhóm để xem chi tiết từng sản phẩm';
+      body.innerHTML = nvHqView ? nvHqDetailHtml(rows, nvHqView) : nvHqMainHtml(rows);
+    }
+    function nvHqRowHtml(m, nameHtml, cls) {
+      return '<tr class="' + (cls || (m.qty === 0 ? 'hq-zero' : '')) + '"><td style="font-weight:600;">' + nameHtml + '</td>' +
+        '<td>' + m.qty.toLocaleString('vi-VN') + '</td><td>' + hqTr(m.rev) + '</td><td>' + (m.qty > 0 ? hqTr(m.price, 2) : '—') + '</td>' +
+        '<td>' + m.tgQty.toLocaleString('vi-VN') + '</td><td>' + hqTr(m.tgRev) + '</td><td>' + (m.tgQty > 0 ? hqTr(m.tgPrice, 2) : '—') + '</td></tr>';
+    }
+    function nvHqMainHtml(rows) {
+      var total = hqNewAcc('Tổng');
+      var trs = HQ_VIEWS.map(function(v, i) {
+        var a = hqNewAcc(v.label);
+        rows.forEach(function(r) { if (hqMatch(v, r)) hqAdd(a, r); });
+        hqFinish(a);
+        if (v.level === 'main') { total.qty += a.qty; total.rev += a.rev; total.tgQty += a.tgQty; total.tgRev += a.tgRev; }
+        return nvHqRowHtml(a, '<a href="javascript:void(0)" onclick="nvHqOpen(' + i + ')" style="text-decoration:none;">' + hqEsc(v.label) + ' <i class="fa-solid fa-chevron-right" style="font-size:0.65rem;"></i></a>');
+      }).join('');
+      hqFinish(total);
+      return '<div class="table-container"><h6 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-box me-2" style="color:var(--primary-color);"></i>Kết quả theo sản phẩm chính</h6>' +
+        '<div style="overflow-x:auto;"><table class="table custom-table hq-table"><thead><tr><th>Sản phẩm chính</th>' + hqCols.map(function(c) { return '<th>' + c.label + '</th>'; }).join('') + '</tr></thead><tbody>' +
+        trs + nvHqRowHtml(total, hqEsc(total.name), 'hq-total') + '</tbody></table></div></div>';
+    }
+    function nvHqDetailHtml(rows, v) {
+      var map = {}, list = [], t = { qty: 0, rev: 0, tg: 0 };
+      rows.forEach(function(r) {
+        if (!hqMatch(v, r)) return;
+        var k = r[8] + '|' + r[9];
+        var a = map[k];
+        if (!a) { a = map[k] = { brand: r[8], name: r[9] || '(không rõ tên)', qty: 0, rev: 0, tg: 0 }; list.push(a); }
+        a.qty += r[6]; a.rev += r[7]; if (r[5] === 1) a.tg += r[6];
+        t.qty += r[6]; t.rev += r[7]; if (r[5] === 1) t.tg += r[6];
+      });
+      list.sort(function(a, b) { return b.qty - a.qty || b.rev - a.rev; });
+      var L = ' style="text-align:left;"';
+      var row = function(brand, name, a, cls) {
+        return '<tr class="' + (cls || '') + '"><td>' + brand + '</td><td' + L + '>' + name + '</td><td>' + a.qty.toLocaleString('vi-VN') + '</td><td>' + (a.qty > 0 ? hqTr(a.rev / a.qty, 2) : '—') + '</td><td>' + a.tg.toLocaleString('vi-VN') + '</td></tr>';
+      };
+      var body = list.length ? list.map(function(a) { return row(hqEsc(a.brand || '—'), hqEsc(a.name), a); }).join('') + row('Tổng', '', t, 'hq-total')
+        : '<tr><td colspan="5" class="text-center text-muted py-3">Chưa có sản phẩm nào trong kỳ này.</td></tr>';
+      return '<div class="table-container"><div class="d-flex justify-content-between align-items-center mb-3 gap-2"><h6 class="fw-bold m-0 text-dark">' + hqEsc(v.label) + ' - chi tiết sản phẩm</h6>' +
+        '<button type="button" class="btn btn-sm btn-outline-secondary" onclick="nvHqBack()"><i class="fa-solid fa-arrow-left me-1"></i>Quay lại</button></div>' +
+        '<div style="overflow-x:auto;"><table class="table custom-table hq-table"><thead><tr><th>Hãng</th><th' + L + '>Tên SP</th><th>SL</th><th>Đơn giá (tr)</th><th>SL trả góp</th></tr></thead><tbody>' + body + '</tbody></table></div></div>';
+    }
+    // ---- Phần Thi đua của nhân viên (bước 4): giống thẻ kết quả ở tab Thi Đua Ngành Hàng, chỉ của chính nhân viên ----
+    async function nvLoadTd() {
+      var box = document.getElementById('nv-sub-content');
+      box.innerHTML = '<div class="table-container text-center text-muted py-4">Đang tải dữ liệu...</div>';
+      try {
+        var r = await nvApi('nv_thidua', { token: nvSession && nvSession.token });
+        if (!nvSession || nvSub !== 'td') return;
+        if (r.expired) { nvClearSession(r.error); return; }
+        if (!r.ok) { box.innerHTML = '<div class="table-container text-center text-danger py-4">' + nvEsc(r.error || 'Không tải được dữ liệu.') + '</div>'; return; }
+        box.innerHTML = nvTdHtml(r);
+      } catch (e) {
+        if (nvSession && nvSub === 'td') box.innerHTML = '<div class="table-container text-center text-danger py-4">Không kết nối được máy chủ. Vui lòng thử lại.</div>';
+      }
+    }
+    function nvTdHtml(r) {
+      // Nhóm có tỷ lệ so với trung bình cao nhất xếp trước (giống tab Thi Đua Ngành Hàng)
+      var ratio = function(c) { var a = c.avg || 1; return a > 0 ? c.val / a : (c.val > 0 ? 999 : 0); };
+      var cats = r.cats.slice().sort(function(x, y) { return ratio(y) - ratio(x); });
+      var cards = cats.map(function(c) {
+        var below = c.val < c.avg;
+        var topCls = c.rank === 1 ? 'top-1' : (c.rank === 2 ? 'top-2' : (c.rank === 3 ? 'top-3' : ''));
+        return '<div class="col-xl-3 col-lg-4 col-md-6 col-12"><div class="p-2 px-3 rounded-3 ' + (below ? 'cat-card-danger' : 'cat-card-success') + '">' +
+          '<div class="text-secondary fw-bold" style="font-size:0.73rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="' + nvEsc(c.name) + '">' + nvEsc(c.name) + '</div>' +
+          '<div class="d-flex justify-content-between align-items-center mt-1">' +
+          '<span style="font-size:1.05rem;font-weight:800;color:' + (below ? '#be123c' : '#047857') + ';"><i class="fa-solid ' + (below ? 'fa-triangle-exclamation text-danger' : 'fa-circle-check text-success') + ' me-1"></i>' + (c.val === 0 ? '-' : formatNumber(c.val)) + '</span>' +
+          '<span class="card-rank-badge ' + topCls + '"><i class="fa-solid fa-ranking-star me-1" style="font-size:0.65rem;"></i>Hạng #' + (c.rank || '-') + '/' + r.totalStaff + '</span>' +
+          '<span class="text-muted fw-semibold" style="font-size:0.72rem;">TB: ' + formatNumber(c.avg) + '</span></div></div></div>';
+      }).join('');
+      return '<div class="table-container"><div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3 pb-2 border-bottom">' +
+        '<span class="fw-bold text-dark"><i class="fa-solid fa-trophy text-warning me-2"></i>' + nvEsc(r.name) + '</span>' +
+        '<div><span class="badge bg-warning text-dark border border-warning px-3 py-2 rounded-pill fw-bold" style="font-size:0.8rem;"><i class="fa-solid fa-award me-1"></i>Đạt TB: ' + r.aboveAvg + '/' + r.totalCats + '</span>' +
+        '<span class="badge bg-light text-secondary border ms-2 px-2 py-2 rounded-3">' + nvEsc(r.store) + '</span>' +
+        '<button type="button" class="btn btn-sm btn-outline-secondary ms-2" onclick="nvLoadTd()"><i class="fa-solid fa-sync me-1"></i>Tải lại</button></div></div>' +
+        '<div class="row g-2">' + (cards || '<div class="col-12 text-center text-muted py-3">Chưa có nhóm hàng thi đua.</div>') + '</div>' +
+        '<div class="small text-muted mt-3">Xem cả kỳ. Ô đỏ là thấp hơn trung bình của siêu thị; Hạng so với ' + r.totalStaff + ' nhân viên cùng siêu thị.</div></div>';
+    }
+    function nvRenderMain() {
+      var s = nvSession, isAdmin = s.role === 'admin';
+      document.getElementById('nv-hello').textContent = 'Xin chào, ' + s.name + ' (' + s.user + ')';
+      document.getElementById('nv-admin-btn').style.display = isAdmin ? '' : 'none';
+      document.getElementById('nv-admin-note').style.display = isAdmin ? '' : 'none';
+      document.getElementById('nv-staff-area').style.display = isAdmin ? 'none' : '';
+      if (!isAdmin) nvSetSub(nvSub);
+      nvShow('main');
+    }
+    async function nvOnOpen() {
+      if (!nvSession) nvSession = nvLoadSession();
+      if (!nvSession) { nvShow('login'); return; }
+      nvRenderMain();
+      try {
+        var r = await nvApi('me', { token: nvSession.token });
+        if (!r.ok) nvClearSession(r.error);
+      } catch (e) { /* mất mạng: giữ nguyên màn hình */ }
+    }
+    async function nvLogin() {
+      var user = document.getElementById('nv-user').value.trim();
+      var pass = document.getElementById('nv-pass').value;
+      var msg = document.getElementById('nv-login-msg');
+      var btn = document.getElementById('nv-login-btn');
+      msg.textContent = '';
+      if (!user || !pass) { msg.textContent = 'Vui lòng nhập User và mật khẩu.'; return; }
+      btn.disabled = true; btn.textContent = 'Đang kiểm tra...';
+      try {
+        var r = await nvApi('login', { user: user, password: pass });
+        if (!r.ok) { msg.textContent = r.error || 'Đăng nhập không thành công.'; return; }
+        nvSession = { token: r.token, role: r.role, user: r.user, name: r.name };
+        nvSaveSession(nvSession);
+        document.getElementById('nv-pass').value = '';
+        nvRenderMain();
+        if (r.role === 'admin') nvOpenAdmin();
+      } catch (e) {
+        msg.textContent = 'Không kết nối được máy chủ. Vui lòng thử lại.';
+      } finally {
+        btn.disabled = false; btn.textContent = 'Đăng nhập';
+      }
+    }
+    async function nvLogout() {
+      var token = nvSession && nvSession.token;
+      nvClearSession('');
+      if (token) { try { await nvApi('logout', { token: token }); } catch (e) {} }
+    }
+
+    // ---- Popup Admin ----
+    function nvAdminMsg(text, ok) {
+      var el = document.getElementById('nv-admin-msg');
+      el.textContent = text || '';
+      el.className = 'nv-msg mb-2 ' + (ok ? 'text-success' : 'text-danger');
+    }
+    function nvOpenAdmin() {
+      document.getElementById('nv-admin-overlay').style.display = 'flex';
+      nvAdminMsg('', true);
+      nvAdminRefresh();
+    }
+    function nvCloseAdmin() { document.getElementById('nv-admin-overlay').style.display = 'none'; }
+    async function nvAdminCall(action, payload) {
+      try {
+        var r = await nvApi(action, Object.assign({ token: nvSession && nvSession.token }, payload || {}));
+        if (r.expired) { nvClearSession(r.error); return null; }
+        return r;
+      } catch (e) {
+        nvAdminMsg('Không kết nối được máy chủ. Vui lòng thử lại.', false);
+        return null;
+      }
+    }
+    async function nvAdminRefresh() {
+      var r = await nvAdminCall('admin_list');
+      if (!r) return;
+      var tb = document.getElementById('nv-admin-tbody');
+      if (!r.ok) { nvAdminMsg(r.error || 'Không tải được danh sách.', false); return; }
+      tb.innerHTML = r.accounts.length ? r.accounts.map(function(a) {
+        return '<tr><td style="font-weight:600;">' + nvEsc(a.user) + '</td><td>' + nvEsc(a.password) + '</td><td>' + nvEsc(a.name) + '</td>' +
+          '<td style="white-space:nowrap;"><button type="button" class="btn btn-sm btn-outline-primary me-1" data-act="reset" data-user="' + nvEsc(a.user) + '">Đặt lại MK</button>' +
+          '<button type="button" class="btn btn-sm btn-outline-danger" data-act="delete" data-user="' + nvEsc(a.user) + '">Xóa</button></td></tr>';
+      }).join('') : '<tr><td colspan="4" class="text-center text-muted py-3">Chưa có tài khoản nào.</td></tr>';
+    }
+    async function nvAdminCreate() {
+      var u = document.getElementById('nv-new-user'), p = document.getElementById('nv-new-pass'), n = document.getElementById('nv-new-name');
+      var btn = document.getElementById('nv-create-btn');
+      btn.disabled = true;
+      var r = await nvAdminCall('admin_create', { user: u.value.trim(), password: p.value, name: n.value.trim() });
+      btn.disabled = false;
+      if (!r) return;
+      if (!r.ok) { nvAdminMsg(r.error || 'Không tạo được tài khoản.', false); return; }
+      nvAdminMsg('Đã tạo tài khoản ' + u.value.trim() + '.', true);
+      u.value = ''; p.value = ''; n.value = '';
+      nvAdminRefresh();
+    }
+    async function nvAdminRowAction(act, user) {
+      var r;
+      if (act === 'reset') {
+        var np = window.prompt('Nhập mật khẩu mới cho ' + user + ' (4-50 ký tự):');
+        if (np === null) return;
+        r = await nvAdminCall('admin_reset', { user: user, password: np });
+        if (r) nvAdminMsg(r.ok ? 'Đã đặt lại mật khẩu cho ' + user + '.' : (r.error || 'Không đặt lại được.'), !!r.ok);
+      } else if (act === 'delete') {
+        if (!window.confirm('Xóa tài khoản ' + user + '?')) return;
+        r = await nvAdminCall('admin_delete', { user: user });
+        if (r) nvAdminMsg(r.ok ? 'Đã xóa tài khoản ' + user + '.' : (r.error || 'Không xóa được.'), !!r.ok);
+      }
+      nvAdminRefresh();
+    }
+    document.getElementById('nv-admin-tbody').addEventListener('click', function(ev) {
+      var b = ev.target.closest('button[data-act]');
+      if (b) nvAdminRowAction(b.getAttribute('data-act'), b.getAttribute('data-user'));
+    });
+
     function switchSidebarTab(tabId, element) {
+      // Đồng bộ trạng thái active cho cả desktop sidebar và mobile bottom nav
       document.querySelectorAll('.sidebar-menu .menu-link').forEach(link => link.classList.remove('active'));
       document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
 
       if (element.classList.contains('menu-link')) {
         element.classList.add('active');
+        // Đồng bộ sang mobile nav tương ứng
         const index = Array.from(document.querySelectorAll('.sidebar-menu .menu-link')).indexOf(element);
         if (index >= 0) document.querySelectorAll('.mobile-bottom-nav .nav-item')[index].classList.add('active');
       } else if (element.classList.contains('nav-item')) {
         element.classList.add('active');
+        // Đồng bộ sang desktop menu tương ứng
         const index = Array.from(document.querySelectorAll('.mobile-bottom-nav .nav-item')).indexOf(element);
         if (index >= 0) document.querySelectorAll('.sidebar-menu .menu-link')[index].classList.add('active');
       }
@@ -663,13 +1242,17 @@
         document.getElementById('page-nganh-hang').classList.remove('d-none');
         if (globalData) renderCompetitionTables(globalData);
       } else if (tabId === 'hieu-qua') {
-        pageTitle.innerHTML = '<i class="fa-solid fa-chart-line text-success me-2"></i>Chỉ Số Hiệu Quả (Sản Phẩm Chính)';
+        pageTitle.innerHTML = '<i class="fa-solid fa-chart-line text-success me-2"></i>Chỉ Số Hiệu Quả';
         document.getElementById('page-hieu-qua').classList.remove('d-none');
-        if (globalData) initHieuQuaTab(globalData);
+        if (globalData) renderHieuQua();
       } else if (tabId === 'tra-cham') {
         pageTitle.innerHTML = '<i class="fa-solid fa-credit-card text-info me-2"></i>Phân Tích Trả Chậm';
         document.getElementById('page-tra-cham').classList.remove('d-none');
         if (globalData) renderTraChamTable(globalData);
+      } else if (tabId === 'nhan-vien') {
+        pageTitle.innerHTML = '<i class="fa-solid fa-user-lock me-2" style="color:var(--primary-color);"></i>Nhân Viên';
+        document.getElementById('page-nhan-vien').classList.remove('d-none');
+        nvOnOpen();
       }
     }
 
@@ -687,7 +1270,10 @@
       var separator = urlInput.indexOf("?") !== -1 ? "&" : "?";
       var fullUrl = urlInput + separator + cacheBuster;
 
-      fetch(fullUrl, { method: "GET", redirect: "follow" })
+      fetch(fullUrl, {
+        method: "GET",
+        redirect: "follow"
+      })
       .then(function(response) {
         if (!response.ok) throw new Error("Lỗi kết nối server: " + response.status);
         return response.json();
@@ -738,7 +1324,6 @@
       renderRevenueTables();
       renderCompetitionTables(data);
       renderTraChamTable(data);
-      initHieuQuaTab(data);
     }
 
     function fillKPI(prefix, summary) {
@@ -1083,143 +1668,6 @@
           rowHtml += `<td class="${cellClass}" style="text-align: left;">${val === 0 ? "-" : formatNumber(val)}</td>`;
         });
         var tr = document.createElement("tr");
-        tr.innerHTML = rowHtml;
-        tbody.appendChild(tr);
-      });
-    }
-
-    /* --- LOGIC TAB HIỆU QUẢ --- */
-    let hqDates = [];
-
-    function setHqStore(storeKey, btnEl) {
-      currentHqStore = storeKey;
-      document.querySelectorAll('#hqStoreTab .nav-link').forEach(el => el.classList.remove('active'));
-      if (btnEl) btnEl.classList.add('active');
-      initHieuQuaTab(globalData);
-    }
-
-    function initHieuQuaTab(data) {
-      if (!data || !data.hieuQuaData) return;
-      var hq = data.hieuQuaData;
-
-      let validStaffs = hq.staffs;
-      if (currentHqStore === 'st1' && data.store1 && data.store1.staffList) {
-        let st1Names = data.store1.staffList.map(s => s.name);
-        validStaffs = hq.staffs.filter(s => st1Names.includes(s));
-      } else if (currentHqStore === 'st2' && data.store2 && data.store2.staffList) {
-        let st2Names = data.store2.staffList.map(s => s.name);
-        validStaffs = hq.staffs.filter(s => st2Names.includes(s));
-      }
-
-      var select = document.getElementById("hq-staff-select");
-      var currentSelected = select.value;
-      select.innerHTML = '<option value="ALL">-- Tất cả Nhân Viên --</option>';
-      validStaffs.forEach(function(s) {
-        select.innerHTML += `<option value="${s}">${s}</option>`;
-      });
-      if (validStaffs.includes(currentSelected)) {
-        select.value = currentSelected;
-      }
-
-      hqDates = ["ALL"].concat(hq.dates || []);
-      var slider = document.getElementById("hq-date-slider");
-      slider.min = 0;
-      slider.max = hqDates.length - 1;
-      if (slider.value >= hqDates.length) slider.value = 0;
-      
-      onDateSliderChange(slider.value);
-    }
-
-    function onDateSliderChange(val) {
-      var selectedDate = hqDates[val];
-      document.getElementById("hq-date-display").innerText = (selectedDate === "ALL") ? "Tất cả các ngày" : "Ngày: " + selectedDate;
-      applyHieuQuaFilter();
-    }
-
-    function applyHieuQuaFilter() {
-      if (!globalData || !globalData.hieuQuaData) return;
-      var hq = globalData.hieuQuaData;
-      var selectedStaff = document.getElementById("hq-staff-select").value;
-      var dateIdx = document.getElementById("hq-date-slider").value;
-      var selectedDate = hqDates[dateIdx];
-
-      let allowedStaffs = null;
-      if (currentHqStore === 'st1' && globalData.store1 && globalData.store1.staffList) {
-        allowedStaffs = globalData.store1.staffList.map(s => s.name);
-      } else if (currentHqStore === 'st2' && globalData.store2 && globalData.store2.staffList) {
-        allowedStaffs = globalData.store2.staffList.map(s => s.name);
-      }
-
-      var filteredRecords = hq.records.filter(function(r) {
-        var matchStore = allowedStaffs ? allowedStaffs.includes(r.staff) : true;
-        var matchStaff = (selectedStaff === "ALL" || r.staff === selectedStaff);
-        var matchDate = (selectedDate === "ALL" || r.date === selectedDate);
-        return matchStore && matchStaff && matchDate;
-      });
-
-      var products = hq.products;
-      var matrix = {};
-      var totalRev = 0;
-      var totalQty = 0;
-      var productTotals = {};
-
-      filteredRecords.forEach(function(r) {
-        totalRev += r.rev;
-        totalQty += r.qty;
-
-        if (!productTotals[r.product]) productTotals[r.product] = 0;
-        productTotals[r.product] += r.qty;
-
-        if (!matrix[r.staff]) matrix[r.staff] = { name: r.staff, qtyMap: {}, totalRev: 0, totalQty: 0 };
-        if (!matrix[r.staff].qtyMap[r.product]) matrix[r.staff].qtyMap[r.product] = 0;
-
-        matrix[r.staff].qtyMap[r.product] += r.qty;
-        matrix[r.staff].totalRev += r.rev;
-        matrix[r.staff].totalQty += r.qty;
-      });
-
-      document.getElementById("hq-total-rev").innerText = formatNumber(totalRev) + " đ";
-      document.getElementById("hq-total-qty").innerText = formatNumber(totalQty);
-
-      var topProd = "-";
-      var maxPQty = 0;
-      for (var p in productTotals) {
-        if (productTotals[p] > maxPQty) {
-          maxPQty = productTotals[p];
-          topProd = p;
-        }
-      }
-      document.getElementById("hq-top-product").innerText = topProd !== "-" ? topProd + " (" + maxPQty + ")" : "-";
-
-      var thead = document.getElementById("hq-thead");
-      var tbody = document.getElementById("hq-tbody");
-
-      var headHtml = `<tr><th style="width:50px; text-align:center;">STT</th><th style="text-align:left; min-width:160px;">Tên Nhân Viên</th>`;
-      products.forEach(function(p) { headHtml += `<th style="text-align:center;">${p}</th>`; });
-      headHtml += `<th style="text-align:center;">Tổng Số Lượng</th><th style="text-align:right;">Tổng Doanh Thu</th></tr>`;
-      thead.innerHTML = headHtml;
-
-      tbody.innerHTML = "";
-      var staffRows = Object.values(matrix);
-      if (staffRows.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="${products.length + 4}" class="text-center text-muted py-4">Không có dữ liệu phù hợp bộ lọc</td></tr>`;
-        return;
-      }
-
-      staffRows.sort((a, b) => b.totalRev - a.totalRev);
-
-      staffRows.forEach(function(s, idx) {
-        var tr = document.createElement("tr");
-        var rowHtml = `<td style="text-align:center;"><span class="rank-badge">${idx + 1}</span></td><td class="fw-semibold text-dark" style="text-align:left;">${s.name}</td>`;
-        
-        products.forEach(function(p) {
-          var q = s.qtyMap[p] || 0;
-          rowHtml += `<td style="text-align:center;">${q === 0 ? "-" : formatNumber(q)}</td>`;
-        });
-
-        rowHtml += `<td class="fw-bold text-indigo" style="text-align:center; color:var(--primary-color);">${formatNumber(s.totalQty)}</td>`;
-        rowHtml += `<td class="fw-bold text-success" style="text-align:right;">${formatNumber(s.totalRev)} đ</td>`;
-        
         tr.innerHTML = rowHtml;
         tbody.appendChild(tr);
       });
